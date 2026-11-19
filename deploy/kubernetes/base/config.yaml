@@ -1,0 +1,16 @@
+# Where everything lives. The S3 credentials go in the `earwig-s3` secret (see kustomization.yaml).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: earwig
+data:
+  # snapshots, shards and listening-test ratings
+  EARWIG_STORE: s3://earwig/library
+  # the audio files to index (and to stream from the UI)
+  EARWIG_MEDIA: s3://earwig/media
+  AWS_REGION: us-east-1
+  # one JSON object per log line, for Loki / Elasticsearch / Cloud Logging
+  EARWIG_LOG_FORMAT: json
+  # for MinIO / RustFS / R2 / Ceph… (omit for AWS S3):
+  # AWS_ENDPOINT: http://s3.storage:9000
+  # AWS_ALLOW_HTTP: "true"

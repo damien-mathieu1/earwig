@@ -1,0 +1,45 @@
+# Local test on kind / minikube with an in-cluster S3 (RustFS) and the locally built image:
+#   docker build -t earwig:dev . && kind load docker-image earwig:dev
+#   kubectl apply -k deploy/kubernetes/dev
+# Not for production: throwaway credentials, S3 data on an emptyDir.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: earwig
+resources:
+  - ../base
+  - s3.yaml
+images:
+  - name: ghcr.io/damien-mathieu1/earwig   # as renamed by the base
+    newName: earwig
+    newTag: dev
+secretGenerator:
+  - name: earwig-s3
+    literals:
+      - AWS_ACCESS_KEY_ID=earwig
+      - AWS_SECRET_ACCESS_KEY=earwig-local-secret
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - target: { kind: ConfigMap, name: earwig }
+    patch: |
+      - op: add
+        path: /data/AWS_ENDPOINT
+        value: http://s3:9000
+      - op: add
+        path: /data/AWS_ALLOW_HTTP
+        value: "true"
+  # 2 shards are plenty for a laptop
+  - target: { kind: CronJob, name: earwig-index }
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/completions
+        value: 2
+      - op: replace
+        path: /spec/jobTemplate/spec/parallelism
+        value: 2
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/0/value
+        value: "2"
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/resources/requests/cpu
+        value: 500m

@@ -1,0 +1,21 @@
+# Only pods labelled `earwig.io/client: "true"` (in any namespace) may call earwig, e.g. your
+# recommendation service; Prometheus scrapes /metrics from the `monitoring` namespace (adapt it to
+# where yours runs). Enforced only if your CNI supports NetworkPolicy (Calico, Cilium…);
+# `kubectl port-forward` still works.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: earwig
+spec:
+  podSelector:
+    matchLabels: { app.kubernetes.io/name: earwig }
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - namespaceSelector: {}
+          podSelector:
+            matchLabels: { earwig.io/client: "true" }
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: monitoring }
+      ports:
+        - { port: http }

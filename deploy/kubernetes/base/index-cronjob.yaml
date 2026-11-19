@@ -1,0 +1,51 @@
+# Periodic incremental indexing as an Indexed Job: N pods each analyse one shard of the media
+# (JOB_COMPLETION_INDEX), reusing unchanged tracks of the current snapshot; the last pod to
+# finish merges the shards and publishes a new snapshot, which the replicas pick up.
+# Run it now:  kubectl -n earwig create job --from=cronjob/earwig-index earwig-index-manual
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: earwig-index
+  labels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: index }
+spec:
+  schedule: "0 */6 * * *"
+  concurrencyPolicy: Forbid          # one writer at a time
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      completionMode: Indexed
+      completions: 4                 # keep in sync with EARWIG_SHARDS below
+      parallelism: 4
+      backoffLimitPerIndex: 2        # a failed shard retries alone (Kubernetes ≥ 1.29)
+      ttlSecondsAfterFinished: 86400
+      template:
+        metadata:
+          labels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: index }
+        spec:
+          restartPolicy: Never
+          securityContext: { runAsNonRoot: true, runAsUser: 10001 }
+          containers:
+            - name: index
+              image: earwig
+              args: ["index"]        # media from EARWIG_MEDIA
+              envFrom:
+                - configMapRef: { name: earwig }
+                - secretRef: { name: earwig-s3 }
+              env:
+                - { name: EARWIG_SHARDS, value: "4" }
+                # all pods of one Job share its name: that is the run id
+                - name: EARWIG_RUN
+                  valueFrom: { fieldRef: { fieldPath: "metadata.labels['batch.kubernetes.io/job-name']" } }
+              resources:
+                requests: { cpu: "2", memory: 2Gi }
+                limits: { memory: 4Gi }
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities: { drop: ["ALL"] }
+              volumeMounts:
+                - { name: tmp, mountPath: /tmp }   # remote media are analysed from temp copies
+          volumes:
+            - name: tmp
+              emptyDir: { sizeLimit: 4Gi }

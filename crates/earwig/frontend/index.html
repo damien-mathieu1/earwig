@@ -1,0 +1,426 @@
+<!doctype html>
+<!-- earwig web UI. Explore: mix a reference track, moods, styles, a description and a tempo.
+     Benchmark: precision@k against ground-truth labels. Listening test: blind A/B ratings. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>earwig</title>
+<style>
+  :root { --bg:#f7f7f8; --card:#fff; --fg:#1b1b1f; --muted:#6b6b76; --line:#e3e3e8; --accent:#5b5bd6; --chip:#ececf4;
+          --good:#15803d; --bad:#dc2626; --random:#9a9aa6;
+          --track:#2f9e8f; --tags:#c2410c; --mood:#db2777; --genre:#2563eb; --description:#7c3aed; --bpm:#a16207; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#141417; --card:#1d1d22; --fg:#ececf1; --muted:#9a9aa6; --line:#2e2e36; --chip:#2a2a33; --good:#4ade80; --bad:#f87171; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+  header { padding:10px 20px; border-bottom:1px solid var(--line); display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  header h1 { font-size:17px; margin:0; }
+  nav { display:flex; gap:4px; } nav button { font:inherit; border:1px solid transparent; background:none; color:var(--muted); padding:5px 12px; border-radius:6px; cursor:pointer; }
+  nav button[aria-selected=true] { background:var(--card); border-color:var(--line); color:var(--fg); font-weight:600; }
+  .muted { color:var(--muted); font-size:12px; }
+  .layout { display:grid; grid-template-columns: 360px 1fr; gap:16px; padding:16px 20px; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; padding:12px 16px; } }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; margin-bottom:16px; min-width:0; }
+  .card h2 { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 10px; display:flex; justify-content:space-between; gap:8px; }
+  .card h2 button { font:inherit; text-transform:none; letter-spacing:0; background:none; border:0; color:var(--accent); cursor:pointer; padding:0; }
+  input[type=search], input[type=text], input[type=number], select { width:100%; padding:7px 8px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg); font:inherit; }
+  select[size] { height:150px; margin-top:6px; }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { border:1px solid var(--line); background:var(--chip); color:var(--fg); border-radius:999px; padding:3px 10px; cursor:pointer; font:inherit; font-size:13px; }
+  .chip[aria-pressed=true] { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .tag { display:inline-block; background:var(--chip); border-radius:4px; padding:0 6px; font-size:11px; margin:1px 2px 1px 0; }
+  .row { display:flex; gap:8px; align-items:center; margin-top:8px; flex-wrap:wrap; }
+  .row > * { flex:1; min-width:110px; }
+  label.w { display:grid; grid-template-columns: 12px 1fr 38px; gap:8px; align-items:center; margin-top:8px; }
+  label.w i { width:10px; height:10px; border-radius:50%; } label.w output { text-align:right; font-variant-numeric:tabular-nums; color:var(--muted); }
+  label.w input { grid-column: 2 / 4; width:100%; margin:0; }
+  .btn { font:inherit; border:1px solid var(--line); background:var(--bg); color:var(--fg); border-radius:6px; padding:5px 10px; cursor:pointer; }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn:disabled { opacity:.5; cursor:default; }
+  .presets { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px; } .presets .btn { font-size:12px; padding:3px 8px; }
+  table { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  th { font-size:12px; color:var(--muted); font-weight:500; }
+  .scroll { overflow-x:auto; }
+  .parts { display:flex; flex-direction:column; gap:3px; min-width:120px; }
+  .part { display:grid; grid-template-columns: 70px 1fr 38px; gap:6px; align-items:center; font-size:11px; color:var(--muted); }
+  .bar { position:relative; height:8px; border-radius:4px; background:var(--line); min-width:80px; } .bar b { display:block; height:100%; border-radius:4px; }
+  .bar .rnd { position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--random); }
+  audio { height:28px; width:100%; min-width:150px; }
+  .empty { color:var(--muted); padding:20px 0; }
+  .error { color:var(--bad); } .good { color:var(--good); } .bad { color:var(--bad); }
+  .stats { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:12px; margin-bottom:12px; }
+  .stat b { display:block; font-size:20px; font-variant-numeric:tabular-nums; }
+  .note { background:var(--chip); border-radius:8px; padding:8px 10px; font-size:13px; margin:8px 0; }
+  .rate { display:flex; gap:6px; } .rate .btn[aria-pressed=true].yes { background:var(--good); border-color:var(--good); color:#fff; }
+  .rate .btn[aria-pressed=true].no { background:var(--bad); border-color:var(--bad); color:#fff; }
+  [hidden] { display:none !important; }
+  @media (max-width: 700px) { .hide-sm { display:none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>earwig</h1>
+  <nav role="tablist" aria-label="Views">
+    <button role="tab" aria-selected="true" data-tab="explore">Explore</button>
+    <button role="tab" aria-selected="false" data-tab="bench">Benchmark</button>
+    <button role="tab" aria-selected="false" data-tab="listen">Listening test</button>
+  </nav>
+  <span class="muted" id="info"></span>
+</header>
+
+<!-- ───────────── Explore ───────────── -->
+<div class="layout" id="tab-explore" role="tabpanel">
+  <section>
+    <div class="card">
+      <h2>Reference track <button id="clear_ref" type="button">none</button></h2>
+      <input type="search" id="q" placeholder="Filter (title, artist, genre…)" aria-label="Filter tracks">
+      <select id="tracks" size="8" aria-label="Reference track"></select>
+      <div class="row"><input type="file" id="upload" accept="audio/*" aria-label="Upload an audio file"></div>
+      <div class="muted" id="upload_status"></div>
+    </div>
+    <div class="card"><h2>Mood <button type="button" data-clear="moods">clear</button></h2><div class="chips" id="moods"></div></div>
+    <div class="card"><h2>Style <button type="button" data-clear="genres">clear</button></h2><div class="chips" id="genres"></div></div>
+    <div class="card">
+      <h2>Description &amp; tempo</h2>
+      <input type="text" id="description" placeholder="In English, e.g. upbeat summer party" aria-label="Description">
+      <div class="row"><input type="number" id="bpm" min="30" max="250" placeholder="Target BPM (default: reference)" aria-label="Target BPM"></div>
+    </div>
+    <div class="card">
+      <h2>Mix</h2>
+      <div class="presets">
+        <button class="btn" type="button" data-preset="1,0.4,0,0,0,0">Sounds like</button>
+        <button class="btn" type="button" data-preset="0,0,1,0,0,0">Mood only</button>
+        <button class="btn" type="button" data-preset="0,0,0,1,0,0">Style only</button>
+        <button class="btn" type="button" data-preset="1,0.3,1,1,1,0.3">Everything</button>
+      </div>
+      <div id="weights"></div>
+      <label class="w"><i></i><span>BPM tolerance ±</span><output id="v_tol">20</output><input type="range" id="tol" min="2" max="60" step="1" value="20"></label>
+      <p class="muted">Each part is standardised over the library, then weighted: a weight of 0 ignores it.</p>
+    </div>
+  </section>
+  <section class="card">
+    <h2>Recommendations <span class="muted" id="timing"></span></h2>
+    <div id="source"></div>
+    <div class="scroll"><table>
+      <thead><tr><th>#</th><th>Track</th><th class="hide-sm">Style / mood</th><th>BPM</th><th>Score</th><th class="hide-sm">Parts</th><th>Listen</th></tr></thead>
+      <tbody id="results"></tbody>
+    </table></div>
+    <div class="empty" id="empty">Pick a reference track, a mood, a style or type a description.</div>
+  </section>
+</div>
+
+<!-- ───────────── Benchmark ───────────── -->
+<div class="layout" id="tab-bench" role="tabpanel" hidden>
+  <section>
+    <div class="card">
+      <h2>Benchmark</h2>
+      <p class="muted">For every labelled track: share of its top-k that shares a label with it (precision@k), averaged, against what a random ranking would score. No listening needed.</p>
+      <div class="row">
+        <label>Ground truth<select id="b_by"></select></label>
+        <label>k<select id="b_k"><option>5</option><option selected>10</option><option>20</option></select></label>
+      </div>
+      <div class="row">
+        <label>BPM tolerance ±<input type="number" id="b_tol" value="20" min="2" max="60"></label>
+        <label style="flex:2"><input type="checkbox" id="b_grid"> also try the 66 weightings (slower)</label>
+      </div>
+      <div class="row"><button class="btn primary" id="b_run" type="button">Run benchmark</button></div>
+      <div class="note" id="b_warn" hidden></div>
+      <p class="muted" id="b_source"></p>
+    </div>
+  </section>
+  <section>
+    <div class="card" id="b_out_card">
+      <h2>Results <span class="muted" id="b_time"></span></h2>
+      <div class="empty" id="b_empty">Run the benchmark to see how far above random the recommendations are.</div>
+      <div id="b_out" hidden>
+        <div class="stats" id="b_stats"></div>
+        <h2>Weightings <span class="muted">grey mark = random</span></h2>
+        <div class="scroll"><table><thead><tr><th>Weighting</th><th>audio / text / BPM</th><th>precision@k</th><th></th><th>× random</th></tr></thead><tbody id="b_weightings"></tbody></table></div>
+        <div id="b_grid_out" hidden>
+          <h2 style="margin-top:16px">Best weightings of the grid</h2>
+          <div class="scroll"><table><thead><tr><th>#</th><th>audio / text / BPM</th><th>precision@k</th><th></th><th>× random</th></tr></thead><tbody id="b_grid_rows"></tbody></table></div>
+        </div>
+        <h2 style="margin-top:16px">Per label (default weighting) <input type="search" id="b_filter" placeholder="filter" style="width:140px;padding:2px 6px" aria-label="Filter labels"></h2>
+        <div class="scroll"><table><thead><tr><th>Label</th><th>queries</th><th>precision@k</th><th></th><th>× random</th><th class="hide-sm">recommended instead / too</th></tr></thead><tbody id="b_labels"></tbody></table></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ───────────── Listening test ───────────── -->
+<div class="layout" id="tab-listen" role="tabpanel" hidden>
+  <section>
+    <div class="card">
+      <h2>Blind A/B listening test</h2>
+      <p class="muted">A random track, the top results of two weightings merged and shuffled. Listen, mark each one relevant or not; which weighting proposed it is revealed once everything is rated. Ratings are saved next to the index.</p>
+      <div class="row">
+        <label>A<select id="l_a"></select></label>
+        <label>B<select id="l_b"></select></label>
+      </div>
+      <div class="row">
+        <label>Results per weighting<select id="l_k"><option>3</option><option selected>5</option><option>10</option></select></label>
+        <label style="flex:2"><input type="checkbox" id="l_labels"> show ground-truth labels (bias!)</label>
+      </div>
+      <div class="row"><button class="btn primary" id="l_next" type="button">New source track</button></div>
+    </div>
+    <div class="card">
+      <h2>Scoreboard <a class="muted" href="/api/ratings" download="earwig-ratings.json">export</a></h2>
+      <div id="l_summary" class="muted">No ratings yet.</div>
+    </div>
+  </section>
+  <section class="card">
+    <h2>Rate the recommendations <span class="muted" id="l_progress"></span></h2>
+    <div id="l_source"><div class="empty">Click “New source track” to start.</div></div>
+    <div class="scroll"><table><tbody id="l_rows"></tbody></table></div>
+  </section>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const genreOf = t => t.subgenre || t.genre || (t.auto_genres || [])[0] || "";
+const player = src => `<audio controls preload="none" src="${src}"></audio>`;
+const pct = x => (100 * x).toFixed(1) + " %";
+const post = (url, body) => fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+const bar = (v, random, color = "var(--accent)") =>
+  `<div class="bar"><b style="width:${Math.max(0, Math.min(1, v)) * 100}%;background:${color}"></b>${random != null ? `<span class="rnd" style="left:${random * 100}%" title="random ${pct(random)}"></span>` : ""}</div>`;
+let tracks = [], byId = new Map(), stats = {}, truth = {}; // truth: track id -> [labels]
+const labelTags = id => (truth[id] || []).map(l => `<span class="tag">${esc(l)}</span>`).join("");
+
+// ── tabs ──
+document.querySelectorAll("nav [data-tab]").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("nav [data-tab]").forEach(x => x.setAttribute("aria-selected", x === b));
+  ["explore", "bench", "listen"].forEach(t => $("tab-" + t).hidden = t !== b.dataset.tab);
+  if (b.dataset.tab === "listen") refreshScoreboard();
+}));
+
+// ───────────── Explore ─────────────
+const PARTS = [["track", "Sound of ref."], ["tags", "Tags of ref."], ["mood", "Mood"], ["genre", "Style"], ["description", "Description"], ["bpm", "Tempo"]];
+let uploaded = null, timer, seq = 0;
+const selected = { moods: new Set(), genres: new Set() };
+const weight = name => +$("w_" + name).value;
+$("weights").innerHTML = PARTS.map(([n, label]) =>
+  `<label class="w"><i style="background:var(--${n})"></i><span>${label}</span><output id="v_${n}">0</output>
+   <input type="range" id="w_${n}" min="0" max="1" step="0.05" value="0"></label>`).join("");
+const setWeights = v => PARTS.forEach(([n], i) => { $("w_" + n).value = v[i]; $("v_" + n).textContent = v[i]; });
+// a choice with no weight would do nothing: give it one
+const ensureWeight = (name, v = 1) => { if (!weight(name)) { $("w_" + name).value = v; $("v_" + name).textContent = v; } };
+
+function renderList() {
+  const q = $("q").value.toLowerCase(), cur = $("tracks").value;
+  $("tracks").innerHTML = tracks
+    .filter(t => !q || `${t.title} ${t.artist} ${t.genre} ${t.subgenre} ${(t.auto_genres || []).join(" ")} ${(truth[t.id] || []).join(" ")}`.toLowerCase().includes(q))
+    .map(t => `<option value="${t.id}">${esc(t.title)}${t.artist ? " — " + esc(t.artist) : ""}${(truth[t.id] || [genreOf(t)]).filter(Boolean).map(g => " · " + esc(g)).join("")}</option>`).join("");
+  $("tracks").value = cur;
+}
+function chips(id, labels) {
+  $(id).innerHTML = labels.map(l => `<button type="button" class="chip" aria-pressed="false" data-label="${esc(l)}">${esc(l)}</button>`).join("");
+  $(id).addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    const on = b.getAttribute("aria-pressed") !== "true";
+    b.setAttribute("aria-pressed", on);
+    selected[id][on ? "add" : "delete"](b.dataset.label);
+    if (on) ensureWeight(id === "moods" ? "mood" : "genre");
+    schedule();
+  });
+}
+function searchBody() {
+  const b = { moods: [...selected.moods], genres: [...selected.genres], description: $("description").value.trim(),
+    bpm_tolerance: +$("tol").value, k: 10, ...Object.fromEntries(PARTS.map(([n]) => ["w_" + n, weight(n)])) };
+  if ($("bpm").value) b.bpm = +$("bpm").value;
+  if (uploaded) b.query = uploaded.query; else if ($("tracks").value) b.track_id = +$("tracks").value;
+  return b;
+}
+async function run() {
+  const b = searchBody(), my = ++seq;
+  const anything = b.track_id || b.query || (b.moods.length && b.w_mood) || (b.genres.length && b.w_genre) || (b.description && b.w_description) || (b.bpm && b.w_bpm);
+  $("empty").hidden = !!anything;
+  if (!anything) { $("results").innerHTML = $("source").innerHTML = $("timing").textContent = ""; $("empty").textContent = "Pick a reference track, a mood, a style or type a description."; return; }
+  const t0 = performance.now();
+  const r = await post("/api/search", b);
+  if (my !== seq) return; // a newer request is on its way
+  if (!r.ok) { $("results").innerHTML = ""; $("empty").hidden = false; $("empty").innerHTML = `<span class="error">${esc(await r.text())}</span>`; return; }
+  const res = await r.json();
+  $("timing").textContent = `${res.query_ms.toFixed(2)} ms scoring · ${(performance.now() - t0).toFixed(0)} ms total`;
+  const s = res.source || uploaded?.meta;
+  $("source").innerHTML = s ? `<p>Reference: <b>${esc(s.title)}</b>${s.artist ? " — " + esc(s.artist) : ""}${uploaded ? " <i>(uploaded)</i>" : ""} ${labelTags(s.id)}
+    <br><span class="muted">${esc([genreOf(s), s.bpm.toFixed(0) + " BPM", s.key, "auto: " + s.auto_genres.join(", ") + " · " + s.auto_moods.join(", ")].filter(Boolean).join(" · "))}</span></p>
+    ${player(uploaded ? uploaded.url : `/api/audio/${s.id}`)}` : "";
+  $("results").innerHTML = res.results.map((x, i) => `<tr>
+    <td>${i + 1}</td>
+    <td><b>${esc(x.track.title)}</b><br><span class="muted">${esc(x.track.artist)}</span> ${labelTags(x.track.id)}</td>
+    <td class="hide-sm">${esc(genreOf(x.track))}<br><span class="muted">${esc((x.track.moods.length ? x.track.moods : x.track.auto_moods).join(", "))}</span></td>
+    <td>${x.track.bpm.toFixed(0)}</td><td><b>${x.score.toFixed(2)}</b></td>
+    <td class="hide-sm"><div class="parts">${Object.entries(x.parts).map(([n, v]) =>
+      `<div class="part"><span>${PARTS.find(p => p[0] === n)[1]}</span>${bar(v, null, `var(--${n})`)}<span>${v.toFixed(2)}</span></div>`).join("")}</div></td>
+    <td>${player(`/api/audio/${x.track.id}`)}</td></tr>`).join("");
+}
+const schedule = () => { clearTimeout(timer); timer = setTimeout(() => run().catch(e => console.error(e)), 120); };
+function resetUpload() { uploaded = null; $("upload").value = ""; $("upload_status").textContent = ""; }
+const refWeights = () => { if (!PARTS.some(([n]) => weight(n))) setWeights([1, 0.4, 0, 0, 0, 0]); else ensureWeight("track"); };
+
+// ───────────── Benchmark ─────────────
+async function runBench() {
+  const body = { by: $("b_by").value, k: +$("b_k").value, bpm_tolerance: +$("b_tol").value, grid: $("b_grid").checked };
+  $("b_run").disabled = true; $("b_run").textContent = "Running…";
+  const t0 = performance.now();
+  try {
+    const r = await post("/api/eval", body);
+    if (!r.ok) throw new Error(await r.text());
+    renderBench(await r.json());
+    $("b_time").textContent = `${((performance.now() - t0) / 1000).toFixed(1)} s`;
+  } catch (e) { $("b_empty").hidden = false; $("b_out").hidden = true; $("b_empty").innerHTML = `<span class="error">${esc(e.message)}</span>`; }
+  $("b_run").disabled = false; $("b_run").textContent = "Run benchmark";
+}
+let benchLabels = [];
+function renderBench(r) {
+  $("b_empty").hidden = true; $("b_out").hidden = false;
+  const best = r.weightings.reduce((a, b) => b.precision > a.precision ? b : a);
+  $("b_stats").innerHTML = [["labelled tracks", r.labelled], ["queries", r.queries], [`random same-${r.by}@${r.k}`, pct(r.random)],
+    ["best weighting", `${pct(best.precision)} <span class="muted">${esc(best.name)}</span>`]]
+    .map(([k, v]) => `<div class="stat"><b>${v}</b><span class="muted">${k}</span></div>`).join("");
+  const wrow = (x, i) => `<tr><td>${x.name === "grid" ? i + 1 : esc(x.name)}</td><td>${x.w_audio.toFixed(1)} / ${x.w_text.toFixed(1)} / ${x.w_bpm.toFixed(1)}</td>
+    <td>${pct(x.precision)}</td><td style="width:35%">${bar(x.precision, r.random)}</td><td class="${x.lift >= 1.5 ? "good" : x.lift < 1.1 ? "bad" : ""}">×${x.lift.toFixed(1)}</td></tr>`;
+  $("b_weightings").innerHTML = r.weightings.map(wrow).join("");
+  $("b_grid_out").hidden = !r.grid.length;
+  $("b_grid_rows").innerHTML = r.grid.map(wrow).join("");
+  benchLabels = r.per_label;
+  renderBenchLabels();
+}
+function renderBenchLabels() {
+  const f = $("b_filter").value.toLowerCase();
+  $("b_labels").innerHTML = benchLabels.filter(l => !f || l.label.toLowerCase().includes(f)).map(l => {
+    const lift = l.random ? l.precision / l.random : 0;
+    return `<tr><td><b>${esc(l.label)}</b></td><td>${l.queries}</td><td>${pct(l.precision)}</td><td style="width:25%">${bar(l.precision, l.random)}</td>
+      <td class="${lift >= 1.5 ? "good" : lift < 1.1 ? "bad" : ""}">×${lift.toFixed(1)}</td>
+      <td class="hide-sm">${l.recommended.map(([x, s]) => `<span class="tag" style="${x === l.label ? "outline:1px solid var(--good)" : ""}">${esc(x)} ${(100 * s).toFixed(0)}%</span>`).join("")}</td></tr>`;
+  }).join("");
+}
+function benchWarning() {
+  const leak = stats.labels_from === "index" && $("b_by").value !== "artist";
+  $("b_warn").hidden = !leak;
+  $("b_warn").textContent = "Ground truth comes from the files' own genre tags, which also feed the text vector: “text only” and the grid are inflated. Serve with --labels <tsv> (labels kept out of the files) for a leak-free benchmark; “audio only” stays fair.";
+}
+
+// ───────────── Listening test ─────────────
+const CONFIGS = {
+  "default 0.7/0.3/0": [0.7, 0.3, 0], "audio only": [1, 0, 0], "text only": [0, 1, 0], "audio + BPM 0.7/0.3/0.3": [0.7, 0.3, 0.3],
+  "old default 0.5/0.35/0.15": [0.5, 0.35, 0.15], "random": null,
+};
+let round = null; // {source, items: [{track, configs}], ratings: Map(track id -> bool)}
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+async function topFor(name, source, k) {
+  if (!CONFIGS[name]) return shuffle(tracks.filter(t => t.id !== source.id)).slice(0, k); // random baseline
+  const [w_audio, w_text, w_bpm] = CONFIGS[name];
+  const r = await post("/api/recommend", { track_id: source.id, w_audio, w_text, w_bpm, bpm_tolerance: 20, k });
+  return (await r.json()).results.map(x => x.track);
+}
+async function nextRound() {
+  const a = $("l_a").value, b = $("l_b").value, k = +$("l_k").value;
+  const source = tracks[Math.floor(Math.random() * tracks.length)];
+  const [ta, tb] = await Promise.all([topFor(a, source, k), topFor(b, source, k)]);
+  const merged = new Map();
+  for (const [name, list] of [[a, ta], [b, tb]]) for (const t of list) {
+    if (!merged.has(t.id)) merged.set(t.id, { track: t, configs: [] });
+    if (!merged.get(t.id).configs.includes(name)) merged.get(t.id).configs.push(name);
+  }
+  round = { source, a, b, items: shuffle([...merged.values()]), ratings: new Map() };
+  renderRound();
+}
+function renderRound() {
+  const { source, items, ratings } = round, done = ratings.size === items.length, showLabels = $("l_labels").checked;
+  $("l_progress").textContent = `${ratings.size} / ${items.length} rated`;
+  $("l_source").innerHTML = `<p>Source: <b>${esc(source.title)}</b>${source.artist ? " — " + esc(source.artist) : ""} ${showLabels ? labelTags(source.id) : ""}</p>${player(`/api/audio/${source.id}`)}`;
+  $("l_rows").innerHTML = items.map(({ track: t, configs }, i) => {
+    const v = ratings.get(t.id);
+    return `<tr><td>${i + 1}</td><td><b>${esc(t.title)}</b><br><span class="muted">${esc(t.artist)}</span> ${showLabels || done ? labelTags(t.id) : ""}
+      ${done ? `<br><span class="muted">from: ${configs.map(esc).join(" + ")}</span>` : ""}</td>
+      <td style="width:40%">${player(`/api/audio/${t.id}`)}</td>
+      <td><div class="rate"><button class="btn yes" type="button" data-id="${t.id}" data-v="1" aria-pressed="${v === true}">Relevant</button>
+      <button class="btn no" type="button" data-id="${t.id}" data-v="0" aria-pressed="${v === false}">Not relevant</button></div></td></tr>`;
+  }).join("") + (done ? `<tr><td colspan="4"><button class="btn primary" type="button" id="l_again">Next source track</button></td></tr>` : "");
+  if (done) $("l_again").addEventListener("click", () => nextRound());
+}
+$("l_rows").addEventListener("click", async e => {
+  const b = e.target.closest("[data-v]"); if (!b || !round) return;
+  const id = +b.dataset.id, relevant = b.dataset.v === "1";
+  const item = round.items.find(x => x.track.id === id);
+  const r = await post("/api/ratings", { source_id: round.source.id, track_id: id, relevant, configs: item.configs });
+  if (!r.ok) { alert(await r.text()); return; }
+  round.ratings.set(id, relevant);
+  renderRound();
+  refreshScoreboard();
+});
+async function refreshScoreboard() {
+  const all = await (await fetch("/api/ratings")).json();
+  if (!all.length) { $("l_summary").textContent = "No ratings yet."; return; }
+  // last rating wins when a track was re-rated for the same source
+  const last = new Map(all.map(r => [`${r.source_id}:${r.track_id}:${r.configs.join("|")}`, r]));
+  const per = {}, bySource = {};
+  for (const r of last.values()) for (const c of r.configs) {
+    (per[c] ??= { n: 0, yes: 0, sources: new Set() });
+    per[c].n++; per[c].yes += r.relevant; per[c].sources.add(r.source_id);
+    ((bySource[r.source_id] ??= {})[c] ??= { n: 0, yes: 0 }); bySource[r.source_id][c].n++; bySource[r.source_id][c].yes += r.relevant;
+  }
+  const a = $("l_a").value, b = $("l_b").value;
+  let wa = 0, wb = 0, ties = 0;
+  for (const s of Object.values(bySource)) if (s[a] && s[b]) {
+    const pa = s[a].yes / s[a].n, pb = s[b].yes / s[b].n;
+    pa > pb ? wa++ : pb > pa ? wb++ : ties++;
+  }
+  $("l_summary").innerHTML = `<table><thead><tr><th>Weighting</th><th>rated</th><th>sources</th><th>human precision</th></tr></thead><tbody>${
+    Object.entries(per).sort((x, y) => y[1].yes / y[1].n - x[1].yes / x[1].n).map(([c, v]) =>
+      `<tr><td>${esc(c)}</td><td>${v.n}</td><td>${v.sources.size}</td><td>${pct(v.yes / v.n)} ${bar(v.yes / v.n)}</td></tr>`).join("")}</tbody></table>
+    <p>Head to head, ${esc(a)} vs ${esc(b)}: <b>${wa}</b> wins / <b>${wb}</b> losses / ${ties} ties on sources rated with both.</p>
+    <p class="muted">Rate at least 20–30 sources before trusting a difference.</p>`;
+}
+
+// ───────────── boot ─────────────
+(async () => {
+  const [lib, vocab, st] = await Promise.all(["/api/tracks", "/api/vocab", "/api/stats"].map(u => fetch(u).then(r => r.json())));
+  tracks = lib; byId = new Map(tracks.map(t => [t.id, t])); stats = st;
+  $("info").textContent = `${st.tracks} tracks · ${st.snapshot}${st.replica ? " · replica " + st.replica : ""} · RAM ${st.rss_mb.toFixed(0)} MB`;
+  if (st.labels_from === "tsv") truth = await (await fetch("/api/labels?by=genre")).json();
+  $("b_source").textContent = st.labels_from === "tsv" ? "Ground truth: the TSV passed with --labels." : "Ground truth: the index's own fields (tags). Serve with --labels <tsv> for a leak-free genre benchmark.";
+  $("b_by").innerHTML = st.eval_by.map(b => `<option>${b}</option>`).join("");
+  benchWarning();
+  for (const id of ["l_a", "l_b"]) $(id).innerHTML = Object.keys(CONFIGS).map(c => `<option>${esc(c)}</option>`).join("");
+  $("l_b").value = "audio only";
+
+  chips("moods", vocab.moods); chips("genres", vocab.genres); renderList();
+  $("q").addEventListener("input", renderList);
+  $("tracks").addEventListener("change", () => { resetUpload(); refWeights(); schedule(); });
+  $("clear_ref").addEventListener("click", () => { $("tracks").value = ""; resetUpload(); schedule(); });
+  document.querySelectorAll("[data-clear]").forEach(b => b.addEventListener("click", () => {
+    const id = b.dataset.clear; selected[id].clear();
+    $(id).querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", "false")); schedule();
+  }));
+  document.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => { setWeights(b.dataset.preset.split(",").map(Number)); schedule(); }));
+  $("weights").addEventListener("input", e => { if (e.target.type === "range") { $("v_" + e.target.id.slice(2)).textContent = e.target.value; schedule(); } });
+  $("tol").addEventListener("input", () => { $("v_tol").textContent = $("tol").value; schedule(); });
+  $("description").addEventListener("input", () => { if ($("description").value.trim()) ensureWeight("description"); schedule(); });
+  $("bpm").addEventListener("input", () => { if ($("bpm").value) ensureWeight("bpm", 0.5); schedule(); });
+  $("upload").addEventListener("change", async () => {
+    const f = $("upload").files[0]; if (!f) return;
+    $("upload_status").textContent = "Analysing… (the first upload loads the models)";
+    try {
+      const r = await fetch(`/api/analyze?name=${encodeURIComponent(f.name)}`, { method: "POST", body: f });
+      if (!r.ok) throw new Error(await r.text());
+      uploaded = { ...(await r.json()), url: URL.createObjectURL(f) };
+      $("tracks").value = "";
+      $("upload_status").textContent = `Analysed in ${uploaded.meta.ingest_ms.toFixed(0)} ms`;
+      refWeights(); schedule();
+    } catch (e) { $("upload_status").innerHTML = `<span class="error">Error: ${esc(e.message)}</span>`; }
+  });
+
+  $("b_run").addEventListener("click", runBench);
+  $("b_by").addEventListener("change", benchWarning);
+  $("b_filter").addEventListener("input", renderBenchLabels);
+  $("l_next").addEventListener("click", () => nextRound().catch(e => alert(e.message)));
+  for (const id of ["l_a", "l_b"]) $(id).addEventListener("change", refreshScoreboard);
+  $("l_labels").addEventListener("change", () => round && renderRound());
+})();
+</script>
+</body>
+</html>

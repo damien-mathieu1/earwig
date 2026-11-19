@@ -1,0 +1,82 @@
+# Highly available earwig on one machine, to try the Kubernetes layout locally:
+#   S3 (RustFS) holds media, snapshots and ratings; 2 index shard workers; 2 stateless replicas
+#   behind nginx. Kill a replica, re-index, queries keep flowing.
+#
+#   cargo run --release --bin seed      # demo clips in seed/audio (or MEDIA_DIR=/your/music)
+#   docker compose up -d --build
+#   open http://127.0.0.1:8080
+#   docker compose run --rm index-0     # re-index (run index-1 too when sharded); replicas reload
+#
+# Credentials below are for local testing only.
+
+x-s3-env: &s3-env
+  AWS_ACCESS_KEY_ID: earwig
+  AWS_SECRET_ACCESS_KEY: earwig-local-secret
+  AWS_REGION: us-east-1
+  AWS_ENDPOINT: http://s3:9000
+  AWS_ALLOW_HTTP: "true"
+
+x-earwig: &earwig
+  image: earwig:dev
+  environment:
+    <<: *s3-env
+    EARWIG_STORE: s3://earwig/library
+
+services:
+  s3:
+    image: rustfs/rustfs:1.0.6
+    environment:
+      RUSTFS_ACCESS_KEY: earwig
+      RUSTFS_SECRET_KEY: earwig-local-secret
+    volumes:
+      - s3-data:/data
+
+  # creates the bucket and uploads the media (any folder: MEDIA_DIR=/path/to/music)
+  s3-init:
+    image: amazon/aws-cli:2.41.0
+    environment:
+      <<: *s3-env
+      AWS_DEFAULT_REGION: us-east-1
+    volumes:
+      - ${MEDIA_DIR:-./seed/audio}:/media:ro
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        until aws --endpoint-url $$AWS_ENDPOINT s3 ls >/dev/null 2>&1; do sleep 1; done
+        aws --endpoint-url $$AWS_ENDPOINT s3 mb s3://earwig 2>/dev/null || true
+        aws --endpoint-url $$AWS_ENDPOINT s3 sync --only-show-errors /media s3://earwig/media
+    depends_on: [s3]
+
+  # two shard workers of one run; the last one to finish merges and publishes the snapshot
+  index-0: &index
+    <<: *earwig
+    command: ["index", "s3://earwig/media", "--shards", "2", "--shard", "0", "--run", "${RUN:-compose}", "--catalog", "/seed/catalog.json"]
+    volumes:
+      - ./seed/catalog.json:/seed/catalog.json:ro
+    restart: "no"
+    depends_on:
+      s3-init: { condition: service_completed_successfully }
+  index-1:
+    <<: *index
+    command: ["index", "s3://earwig/media", "--shards", "2", "--shard", "1", "--run", "${RUN:-compose}", "--catalog", "/seed/catalog.json"]
+
+  # stateless replicas: they serve 503 until the first snapshot exists, then poll for new ones
+  api:
+    <<: *earwig
+    build: .
+    command: ["serve", "--host", "0.0.0.0", "--refresh", "5"]
+    deploy:
+      replicas: 2
+    depends_on:
+      s3-init: { condition: service_completed_successfully }
+
+  lb:
+    image: nginx:1.27-alpine
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./deploy/compose/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: [api]
+
+volumes:
+  s3-data:

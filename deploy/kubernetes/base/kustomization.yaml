@@ -1,0 +1,18 @@
+# kubectl apply -k deploy/kubernetes/base   (or a kustomize overlay of yours on top of it)
+# Edit config.yaml (bucket, endpoint) and create the S3 credentials secret first:
+#   kubectl -n earwig create secret generic earwig-s3 \
+#     --from-literal=AWS_ACCESS_KEY_ID=... --from-literal=AWS_SECRET_ACCESS_KEY=...
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: earwig
+resources:
+  - namespace.yaml
+  - config.yaml
+  - api.yaml
+  - indexer.yaml
+  - index-cronjob.yaml
+  - networkpolicy.yaml
+images:
+  - name: earwig
+    newName: ghcr.io/damien-mathieu1/earwig
+    newTag: latest

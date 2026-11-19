@@ -1,0 +1,87 @@
+# Recommendation replicas (--role api): each loads the latest snapshot and the pushed tracks from
+# the store into RAM and polls for changes. They never analyse audio (that is earwig-indexer), so
+# a burst of uploads cannot slow recommendations down. Scale freely; a rolling update never drops
+# below the current count (maxUnavailable 0), and a replica only receives traffic once a library
+# is loaded (readiness on /readyz).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: earwig-api
+  labels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: api }
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: { maxUnavailable: 0, maxSurge: 1 }
+  selector:
+    matchLabels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: api }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: api }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8081"
+        prometheus.io/path: /metrics
+    spec:
+      # spread replicas over nodes so one node failure keeps the service up
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: api }
+      securityContext: { runAsNonRoot: true, runAsUser: 10001, fsGroup: 10001 }
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: api
+          image: earwig
+          args: ["serve", "--host", "0.0.0.0", "--role", "api", "--api-only", "--refresh", "10"]
+          ports: [{ name: http, containerPort: 8081 }]
+          envFrom:
+            - configMapRef: { name: earwig }
+            - secretRef: { name: earwig-s3 }
+          env:
+            # optional: callers then send `Authorization: Bearer <token>`
+            #   kubectl -n earwig create secret generic earwig-api --from-literal=token=$(openssl rand -hex 32)
+            # rotate without downtime: set "new,old", roll the callers to the new one, then "new"
+            - name: EARWIG_API_TOKEN
+              valueFrom: { secretKeyRef: { name: earwig-api, key: token, optional: true } }
+          readinessProbe:
+            httpGet: { path: /readyz, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: http }
+            periodSeconds: 10
+            failureThreshold: 3
+          resources:
+            # the index takes ~4 KB per track in RAM; mood / style search loads CLAP's text tower
+            requests: { cpu: 250m, memory: 512Mi }
+            limits: { memory: 2Gi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          volumeMounts:
+            - { name: tmp, mountPath: /tmp }
+      volumes:
+        - name: tmp
+          emptyDir: { sizeLimit: 256Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: earwig
+  labels: { app.kubernetes.io/name: earwig }
+spec:
+  selector: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: api }
+  ports: [{ name: http, port: 80, targetPort: http }]
+---
+# voluntary disruptions (node drain, upgrades) keep at least one replica serving
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: earwig-api
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: api }

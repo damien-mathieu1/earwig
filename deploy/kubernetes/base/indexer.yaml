@@ -1,0 +1,68 @@
+# Receives pushed tracks (PUT / DELETE /api/v1/tracks/{id}) and uploads, and analyses the audio:
+# the CPU-heavy part, kept apart from the recommendation replicas. A push lands in the store as
+# one object, so it is recommendable on every API replica within its --refresh period.
+# Ready before any track exists, so an app can push its very first track. Each replica analyses
+# at most 2 files at a time; scale it with the upload rate, not with the read traffic.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: earwig-indexer
+  labels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: indexer }
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: { maxUnavailable: 0, maxSurge: 1 }
+  selector:
+    matchLabels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: indexer }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: indexer }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8081"
+        prometheus.io/path: /metrics
+    spec:
+      securityContext: { runAsNonRoot: true, runAsUser: 10001, fsGroup: 10001 }
+      # let in-flight analyses finish on a rolling update
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: indexer
+          image: earwig
+          args: ["serve", "--host", "0.0.0.0", "--role", "indexer", "--api-only", "--refresh", "10"]
+          ports: [{ name: http, containerPort: 8081 }]
+          envFrom:
+            - configMapRef: { name: earwig }
+            - secretRef: { name: earwig-s3 }
+          env:
+            - name: EARWIG_API_TOKEN
+              valueFrom: { secretKeyRef: { name: earwig-api, key: token, optional: true } }
+          readinessProbe:
+            httpGet: { path: /readyz, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: http }
+            periodSeconds: 10
+            failureThreshold: 6
+          resources:
+            # ~0.5 s of CPU per track; the analysis models take ~1.5 GB once loaded
+            requests: { cpu: "1", memory: 2Gi }
+            limits: { memory: 4Gi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          volumeMounts:
+            - { name: tmp, mountPath: /tmp }   # files are analysed from a temp copy
+      volumes:
+        - name: tmp
+          emptyDir: { sizeLimit: 2Gi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: earwig-indexer
+  labels: { app.kubernetes.io/name: earwig }
+spec:
+  selector: { app.kubernetes.io/name: earwig, app.kubernetes.io/component: indexer }
+  ports: [{ name: http, port: 80, targetPort: http }]

@@ -1,0 +1,823 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "earwig API",
+    "version": "1.0.0",
+    "description": "Content-based music recommendation. Tracks are identified by their media key: their path in the media bucket or folder (e.g. `tracks/42.mp3`). When the server runs with `--api-token`, every route requires `Authorization: Bearer <token>`. `/healthz` (liveness) and `/readyz` (a snapshot is loaded) are always open. Several tokens may be configured (comma-separated) to rotate without downtime. Replicas run as `--role api` (recommendations and lookups), `--role indexer` (pushed tracks and uploads) or `--role all`; a route its role does not serve answers 404. When too many requests are in flight, `/api` answers 503 with `Retry-After`. Prometheus metrics are at `/metrics`.",
+    "license": {
+      "name": "MIT OR Apache-2.0"
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "paths": {
+    "/api/v1/recommendations": {
+      "post": {
+        "summary": "Recommend tracks",
+        "description": "Combines any of: seed tracks (their sound and tags, averaged — e.g. a user's recent listens), uploaded features, moods, styles, an English description and a target tempo. Each part is standardised over the library, then weighted. A weight left out defaults to: sound 0.7 and tags 0.3 when there are seeds or features, mood / genre / description 1 when given, bpm 0.5 when `bpm` is given, avoid 0.5 when `avoid` is given, 0 otherwise. Seeds, `avoid` and `exclude` keys are never returned. `candidates` restricts the results to the app's visible tracks; `max_per_artist` / `max_per_album` cap repeats (tracks with no artist / album name are not capped). Filters and caps apply before `limit`, so a full page is returned whenever enough tracks qualify.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecommendationsRequest"
+              },
+              "examples": {
+                "history": {
+                  "summary": "From a user's history, minus what they already heard",
+                  "value": {
+                    "seeds": [
+                      "tracks/12.mp3",
+                      "tracks/98.mp3"
+                    ],
+                    "exclude": [
+                      "tracks/7.mp3"
+                    ],
+                    "limit": 20
+                  }
+                },
+                "mood": {
+                  "summary": "Sad hip hop, no seed",
+                  "value": {
+                    "moods": [
+                      "sad"
+                    ],
+                    "genres": [
+                      "hip hop"
+                    ],
+                    "limit": 10
+                  }
+                },
+                "mix": {
+                  "summary": "Like this track, but more energetic",
+                  "value": {
+                    "seeds": [
+                      "tracks/12.mp3"
+                    ],
+                    "moods": [
+                      "energetic"
+                    ],
+                    "weights": {
+                      "sound": 1,
+                      "tags": 0.3,
+                      "mood": 0.6
+                    }
+                  }
+                },
+                "autoplay": {
+                  "summary": "Autoplay: liked tracks count more, skips push away, one track per album",
+                  "value": {
+                    "seeds": [
+                      "tracks/12.mp3",
+                      {
+                        "key": "tracks/40.mp3",
+                        "weight": 2
+                      }
+                    ],
+                    "avoid": [
+                      "tracks/77.mp3"
+                    ],
+                    "candidates": [
+                      "tracks/12.mp3",
+                      "tracks/40.mp3",
+                      "tracks/51.mp3",
+                      "tracks/63.mp3"
+                    ],
+                    "max_per_album": 1,
+                    "max_per_artist": 2,
+                    "limit": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ranked tracks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecommendationsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error"
+          },
+          "503": {
+            "description": "No library loaded yet, or overloaded (retry after `Retry-After` seconds)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tracks": {
+      "get": {
+        "summary": "One indexed track",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Media key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The track",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Track"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/tracks/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "description": "Your app's id for the track (URL-encode `/`). It becomes the track's key in recommendations."
+        }
+      ],
+      "put": {
+        "summary": "Add or update a track under your own id",
+        "description": "Three forms: (1) the audio file as the body (any content type but JSON), metadata as query parameters (title, artist, album, genre, subgenre, year); (2) a JSON body with `media_key`, the audio's key in the media store (the server's `--media` if set, else the snapshot's media); (3) a JSON body without `media_key` for a track earwig already knows: only its metadata changes, no audio analysis. Given metadata overrides the file's tags, and the text vector is re-embedded when genre / moods / themes / tags change. The track is recommendable at once on the replica that answered, on the others after their next refresh (`--refresh`, 30 s by default). Analysis takes about a second; the first one loads the models (a few seconds).",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "artist",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "album",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subgenre",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrackFields"
+              },
+              "examples": {
+                "from the bucket": {
+                  "value": {
+                    "media_key": "uploads/3f2a9c1e",
+                    "title": "Astrid",
+                    "artist": "JRK 19",
+                    "album": "…",
+                    "genre": "rap"
+                  }
+                },
+                "metadata only": {
+                  "value": {
+                    "genre": "french rap",
+                    "moods": [
+                      "dark"
+                    ]
+                  }
+                }
+              }
+            },
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The track as stored",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Track"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove a track added with PUT",
+        "description": "A scanned file with the same key comes back from the snapshot.",
+        "responses": {
+          "204": {
+            "description": "Removed"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/analyze": {
+      "post": {
+        "summary": "Analyse a file that is not in the library",
+        "description": "The body is the raw audio file (MP3, FLAC, WAV, OGG, M4A, AIFF…, up to 300 MB). Returns its metadata and `features`, to pass in `features` of a recommendations request. The first call loads the analysis models (a few seconds).",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Original file name (format detection, title fallback)"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Metadata and features",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "track",
+                    "features"
+                  ],
+                  "properties": {
+                    "track": {
+                      "$ref": "#/components/schemas/Track"
+                    },
+                    "features": {
+                      "$ref": "#/components/schemas/Features"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/openapi.json": {
+      "get": {
+        "summary": "This document",
+        "responses": {
+          "200": {
+            "description": "OpenAPI 3.1"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "responses": {
+      "Error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      },
+      "Weights": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sound": {
+            "type": "number",
+            "minimum": 0,
+            "description": "audio similarity to the seeds / features"
+          },
+          "tags": {
+            "type": "number",
+            "minimum": 0,
+            "description": "similarity of genre / mood tags to the seeds'"
+          },
+          "mood": {
+            "type": "number",
+            "minimum": 0
+          },
+          "genre": {
+            "type": "number",
+            "minimum": 0
+          },
+          "description": {
+            "type": "number",
+            "minimum": 0
+          },
+          "bpm": {
+            "type": "number",
+            "minimum": 0
+          },
+          "avoid": {
+            "type": "number",
+            "minimum": 0,
+            "description": "distance from the `avoid` tracks (sound and tags)"
+          }
+        }
+      },
+      "Seed": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Media key (weight 1)"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "key"
+            ],
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 0,
+                "default": 1
+              }
+            }
+          }
+        ]
+      },
+      "TrackFields": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "media_key": {
+            "type": "string",
+            "maxLength": 1024,
+            "description": "Key of the audio in the media store (relative, no `..`)"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "artist": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "album": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "genre": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "subgenre": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "year": {
+            "type": "integer"
+          },
+          "moods": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          "themes": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          "tags": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "type": "string",
+              "maxLength": 64
+            }
+          }
+        }
+      },
+      "Features": {
+        "type": "object",
+        "required": [
+          "audio",
+          "text",
+          "bpm"
+        ],
+        "description": "Opaque features from /api/v1/analyze (512 + 384 floats); send them back unchanged.",
+        "properties": {
+          "audio": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "text": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "bpm": {
+            "type": "number"
+          }
+        }
+      },
+      "RecommendationsRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "seeds": {
+            "type": "array",
+            "maxItems": 1000,
+            "items": {
+              "$ref": "#/components/schemas/Seed"
+            },
+            "description": "Reference tracks; their profile is the weighted mean"
+          },
+          "avoid": {
+            "type": "array",
+            "maxItems": 1000,
+            "items": {
+              "type": "string"
+            },
+            "description": "Media keys to move away from (skips, dislikes); never returned"
+          },
+          "candidates": {
+            "type": "array",
+            "maxItems": 100000,
+            "items": {
+              "type": "string"
+            },
+            "description": "When given, only these media keys may be returned"
+          },
+          "max_per_artist": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "max_per_album": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "features": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "$ref": "#/components/schemas/Features"
+            }
+          },
+          "moods": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "description": "e.g. happy, sad, energetic, chill — any English word works, see the server's vocabulary for tuned ones"
+          },
+          "genres": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "description": "e.g. hip hop, reggae, rock, jazz"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Free English text, e.g. \"upbeat summer party\""
+          },
+          "bpm": {
+            "type": "number",
+            "description": "Target tempo (defaults to the seeds' median when the bpm weight is set)"
+          },
+          "weights": {
+            "$ref": "#/components/schemas/Weights"
+          },
+          "bpm_tolerance": {
+            "type": "number",
+            "default": 20
+          },
+          "exclude": {
+            "type": "array",
+            "maxItems": 100000,
+            "items": {
+              "type": "string"
+            },
+            "description": "Media keys never returned"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        }
+      },
+      "Track": {
+        "type": "object",
+        "required": [
+          "key",
+          "title",
+          "artist",
+          "album",
+          "genre",
+          "subgenre",
+          "bpm",
+          "musical_key",
+          "duration_s",
+          "auto_genres",
+          "auto_moods"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "artist": {
+            "type": "string"
+          },
+          "album": {
+            "type": "string"
+          },
+          "genre": {
+            "type": "string"
+          },
+          "subgenre": {
+            "type": "string"
+          },
+          "year": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "bpm": {
+            "type": "number"
+          },
+          "musical_key": {
+            "type": "string"
+          },
+          "duration_s": {
+            "type": "number"
+          },
+          "auto_genres": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "auto_moods": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "RecommendationsResponse": {
+        "type": "object",
+        "required": [
+          "items",
+          "unknown_seeds",
+          "snapshot",
+          "took_ms"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "key",
+                "score",
+                "parts",
+                "track",
+                "explain"
+              ],
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "score": {
+                  "type": "number",
+                  "description": "weighted mean of the standardised parts (comparable within one response)"
+                },
+                "parts": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "number"
+                  },
+                  "description": "raw similarity of each part used: sound, tags, mood, genre, description, bpm, avoid (minus the similarity to the avoided tracks)"
+                },
+                "track": {
+                  "$ref": "#/components/schemas/Track"
+                },
+                "explain": {
+                  "$ref": "#/components/schemas/Explain"
+                }
+              }
+            }
+          },
+          "unknown_seeds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Seeds and avoided keys not in the current snapshot (not indexed yet or removed)"
+          },
+          "snapshot": {
+            "type": "string"
+          },
+          "took_ms": {
+            "type": "number"
+          }
+        }
+      },
+      "Explain": {
+        "type": "object",
+        "required": [
+          "driven_by",
+          "shared_labels"
+        ],
+        "description": "Why the track was recommended, for display (e.g. \"Because you listened to X · same tempo · hip hop\").",
+        "properties": {
+          "driven_by": {
+            "type": "string",
+            "description": "Part that added most to the score: sound, tags, mood, genre, description, bpm or avoid"
+          },
+          "because": {
+            "type": "object",
+            "required": [
+              "key",
+              "title",
+              "artist",
+              "similarity"
+            ],
+            "description": "The seed this track sounds most like (absent without seeds)",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "artist": {
+                "type": "string"
+              },
+              "similarity": {
+                "type": "number",
+                "description": "audio cosine similarity"
+              }
+            }
+          },
+          "tempo": {
+            "type": "object",
+            "required": [
+              "query_bpm",
+              "track_bpm"
+            ],
+            "description": "Present when the tempos match within bpm_tolerance (half / double time included)",
+            "properties": {
+              "query_bpm": {
+                "type": "number"
+              },
+              "track_bpm": {
+                "type": "number"
+              }
+            }
+          },
+          "shared_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Up to 5 labels shared with the seeds or the requested moods / genres, from human metadata only (never CLAP auto-tags)"
+          }
+        }
+      }
+    }
+  }
+}

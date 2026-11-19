@@ -1,0 +1,205 @@
+name: Create Release
+
+# Click "Run workflow" in Actions. Version is CalVer vYYYY.M.N (N = release
+# number in the current month, starting at 1), e.g. v2026.11.1, v2026.11.2.
+on:
+  workflow_dispatch:
+
+# Serialize releases so two runs can never compute the same tag.
+concurrency:
+  group: create-release
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  test:
+    name: Tests
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+
+  create-release:
+    name: Bump, tag and create GitHub Release
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute CalVer version
+        id: version
+        run: |
+          PREFIX="v$(date -u +%Y).$(date -u +%-m)"
+          LAST=$(git tag --list "${PREFIX}.*" | awk -F. '{print $NF}' | grep -E '^[0-9]+$' | sort -n | tail -1 || true)
+          VERSION="${PREFIX}.$(( ${LAST:-0} + 1 ))"
+          echo "Next version: $VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Generate changelog
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --unreleased --strip all --tag ${{ steps.version.outputs.version }}
+        env:
+          OUTPUT: changelog_fragment.md
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      # crates.io publishes the version in Cargo.toml, so it must match the tag.
+      # Bumps [workspace.package] (shared by the three crates) and the exact path-dependency pins.
+      - name: Bump Cargo version, commit and tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          sed -i "0,/^version = .*/s//version = \"${VERSION#v}\"/" Cargo.toml
+          sed -i -E "s/^(earwig-(core|analysis) = .*version = \"=)[^\"]*/\1${VERSION#v}/" Cargo.toml
+          cargo update --workspace
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore(release): $VERSION"
+          git tag "$VERSION"
+          git push origin HEAD:main "$VERSION"
+
+      - name: Build release body
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          GENERATED=$(gh api repos/${{ github.repository }}/releases/generate-notes \
+            --method POST --field tag_name="$VERSION" --jq '.body')
+          CONTRIBUTORS=$(echo "$GENERATED" | awk '/^## New Contributors/{found=1} found{print}' | grep -v "^\*\*Full Changelog" || true)
+          FULL_CHANGELOG=$(echo "$GENERATED" | grep "^\*\*Full Changelog" || true)
+          {
+            echo "# earwig $VERSION"
+            echo ""
+            cat changelog_fragment.md
+            echo ""
+            echo "Container image: \`ghcr.io/${GITHUB_REPOSITORY,,}:$VERSION\` (linux/amd64, linux/arm64, models included)"
+            echo ""
+            [ -n "$CONTRIBUTORS" ] && { echo "$CONTRIBUTORS"; echo ""; }
+            [ -n "$FULL_CHANGELOG" ] && echo "$FULL_CHANGELOG"
+            true
+          } > release_body.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: ${{ steps.version.outputs.version }}
+          body_path: release_body.md
+
+  binaries:
+    name: Build binaries
+    needs: create-release
+    uses: ./.github/workflows/release.yml
+    with:
+      tag: ${{ needs.create-release.outputs.version }}
+    permissions:
+      contents: write
+
+  image:
+    name: Container image
+    needs: create-release
+    uses: ./.github/workflows/image.yml
+    with:
+      tag: ${{ needs.create-release.outputs.version }}
+    permissions:
+      contents: read
+      packages: write
+
+  publish:
+    name: Publish to crates.io
+    needs: create-release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.create-release.outputs.version }}
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Publish
+        # earwig-core, then earwig-analysis, then earwig (multi -p needs cargo >= 1.90)
+        run: cargo publish --locked -p earwig-core -p earwig-analysis -p earwig
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+  homebrew:
+    name: Update Homebrew tap
+    needs: [create-release, binaries]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      TAG: ${{ needs.create-release.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: damien-mathieu1/homebrew-tap
+          ssh-key: ${{ secrets.TAP_DEPLOY_KEY }}
+
+      - name: Download release archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --dir "$RUNNER_TEMP/assets" --pattern 'earwig-*.tar.gz'
+
+      - name: Generate formula
+        run: |
+          base="https://github.com/$GITHUB_REPOSITORY/releases/download/$TAG"
+          sha() { sha256sum "$RUNNER_TEMP/assets/earwig-$TAG-$1.tar.gz" | cut -d' ' -f1; }
+          mkdir -p Formula
+          cat > Formula/earwig.rb <<EOF
+          class Earwig < Formula
+            desc "Content-based music recommendation engine: similar tracks, moods and styles from the audio"
+            homepage "https://github.com/$GITHUB_REPOSITORY"
+            version "${TAG#v}"
+            license any_of: ["MIT", "Apache-2.0"]
+
+            on_macos do
+              # Apple Silicon only: Intel Macs can `cargo install earwig`
+              depends_on arch: :arm64
+              url "$base/earwig-$TAG-aarch64-apple-darwin.tar.gz"
+              sha256 "$(sha aarch64-apple-darwin)"
+            end
+
+            on_linux do
+              if Hardware::CPU.arm?
+                url "$base/earwig-$TAG-aarch64-unknown-linux-gnu.tar.gz"
+                sha256 "$(sha aarch64-unknown-linux-gnu)"
+              else
+                url "$base/earwig-$TAG-x86_64-unknown-linux-gnu.tar.gz"
+                sha256 "$(sha x86_64-unknown-linux-gnu)"
+              end
+            end
+
+            def install
+              bin.install "earwig"
+            end
+
+            def caveats
+              <<~TXT
+                The analysis models (~700 MB) are downloaded on the first \`earwig index\`,
+                or ahead of time with \`earwig models\`, into ~/.cache/earwig (\$EARWIG_CACHE).
+              TXT
+            end
+
+            test do
+              assert_match version.to_s, shell_output("#{bin}/earwig --version")
+            end
+          end
+          EOF
+
+      - name: Commit and push formula
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/earwig.rb
+          git diff --cached --quiet || git commit -m "chore: bump earwig ${TAG#v}"
+          git push origin HEAD:main

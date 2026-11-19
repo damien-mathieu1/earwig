@@ -1,0 +1,18 @@
+[package]
+name = "earwig-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+keywords.workspace = true
+categories.workspace = true
+readme = "../../README.md"
+description = "Core of the earwig music recommender: track index and hybrid audio/text/BPM scoring"
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+bincode = "1.3"
+rayon = "1.10"
+simsimd = "6"

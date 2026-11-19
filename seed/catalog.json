@@ -1,0 +1,4964 @@
+{
+ "tracks": [
+  {
+   "id": 1,
+   "title": "Dernière Lantern",
+   "artist": "Omar Moreau",
+   "genre": "électronique",
+   "subgenre": "deep house",
+   "year": 1990,
+   "bpm": 122,
+   "key": "D# minor",
+   "moods": [
+    "chaleureux",
+    "groovy"
+   ],
+   "themes": [
+    "club",
+    "été"
+   ],
+   "tags": [
+    "four-on-the-floor",
+    "rhodes"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.08,
+    "bright": 0.43,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 2,
+   "title": "Midnight Rivière",
+   "artist": "The Étoile Club",
+   "genre": "électronique",
+   "subgenre": "deep house",
+   "year": 2019,
+   "bpm": 121,
+   "key": "D# minor",
+   "moods": [
+    "groovy",
+    "chaleureux"
+   ],
+   "themes": [
+    "été",
+    "nuit"
+   ],
+   "tags": [
+    "four-on-the-floor",
+    "rhodes"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.08,
+    "bright": 0.5,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 3,
+   "title": "Broken Mirror",
+   "artist": "Omar Moreau",
+   "genre": "électronique",
+   "subgenre": "deep house",
+   "year": 2006,
+   "bpm": 118,
+   "key": "D minor",
+   "moods": [
+    "groovy",
+    "chaleureux"
+   ],
+   "themes": [
+    "club",
+    "nuit"
+   ],
+   "tags": [
+    "four-on-the-floor",
+    "rhodes"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.08,
+    "bright": 0.54,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 4,
+   "title": "Burning Lantern",
+   "artist": "The Étoile Club",
+   "genre": "électronique",
+   "subgenre": "deep house",
+   "year": 1992,
+   "bpm": 121,
+   "key": "A minor",
+   "moods": [
+    "groovy",
+    "chaleureux"
+   ],
+   "themes": [
+    "été",
+    "nuit"
+   ],
+   "tags": [
+    "four-on-the-floor",
+    "rhodes"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.08,
+    "bright": 0.45,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 5,
+   "title": "Folle Skyline",
+   "artist": "Omar Moreau",
+   "genre": "électronique",
+   "subgenre": "deep house",
+   "year": 1990,
+   "bpm": 124,
+   "key": "B minor",
+   "moods": [
+    "groovy",
+    "nocturne"
+   ],
+   "themes": [
+    "nuit",
+    "été"
+   ],
+   "tags": [
+    "four-on-the-floor",
+    "rhodes"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.02,
+    "swing": 0.08,
+    "bright": 0.41,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 6,
+   "title": "Grande Nuit",
+   "artist": "Théo Silva",
+   "genre": "électronique",
+   "subgenre": "techno",
+   "year": 1989,
+   "bpm": 128,
+   "key": "D# minor",
+   "moods": [
+    "intense",
+    "hypnotique"
+   ],
+   "themes": [
+    "warehouse",
+    "machine"
+   ],
+   "tags": [
+    "acid",
+    "303",
+    "industriel"
+   ],
+   "synth": {
+    "drums": "techno",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.37,
+    "swing": 0.0,
+    "bright": 0.73,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 7,
+   "title": "Secret Dream",
+   "artist": "The River Quartet",
+   "genre": "électronique",
+   "subgenre": "techno",
+   "year": 2005,
+   "bpm": 126,
+   "key": "E minor",
+   "moods": [
+    "hypnotique",
+    "intense"
+   ],
+   "themes": [
+    "machine",
+    "transe"
+   ],
+   "tags": [
+    "acid",
+    "303",
+    "industriel"
+   ],
+   "synth": {
+    "drums": "techno",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.36,
+    "swing": 0.0,
+    "bright": 0.8,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 8,
+   "title": "Petite Heart",
+   "artist": "Théo Silva",
+   "genre": "électronique",
+   "subgenre": "techno",
+   "year": 1998,
+   "bpm": 133,
+   "key": "C# minor",
+   "moods": [
+    "sombre",
+    "intense"
+   ],
+   "themes": [
+    "warehouse",
+    "machine"
+   ],
+   "tags": [
+    "acid",
+    "303",
+    "industriel"
+   ],
+   "synth": {
+    "drums": "techno",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.39,
+    "swing": 0.0,
+    "bright": 0.64,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 9,
+   "title": "Dernière Desert",
+   "artist": "The River Quartet",
+   "genre": "électronique",
+   "subgenre": "techno",
+   "year": 2012,
+   "bpm": 132,
+   "key": "D# minor",
+   "moods": [
+    "sombre",
+    "hypnotique"
+   ],
+   "themes": [
+    "warehouse",
+    "machine"
+   ],
+   "tags": [
+    "acid",
+    "303",
+    "industriel"
+   ],
+   "synth": {
+    "drums": "techno",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.35,
+    "swing": 0.0,
+    "bright": 0.75,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 10,
+   "title": "Electric Saison",
+   "artist": "Théo Silva",
+   "genre": "électronique",
+   "subgenre": "techno",
+   "year": 2012,
+   "bpm": 127,
+   "key": "C minor",
+   "moods": [
+    "sombre",
+    "intense"
+   ],
+   "themes": [
+    "transe",
+    "machine"
+   ],
+   "tags": [
+    "acid",
+    "303",
+    "industriel"
+   ],
+   "synth": {
+    "drums": "techno",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.32,
+    "swing": 0.0,
+    "bright": 0.77,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 11,
+   "title": "Folle Nuit",
+   "artist": "Malik Okafor",
+   "genre": "électronique",
+   "subgenre": "drum and bass",
+   "year": 2006,
+   "bpm": 170,
+   "key": "A# minor",
+   "moods": [
+    "frénétique",
+    "urbain"
+   ],
+   "themes": [
+    "vitesse",
+    "jungle"
+   ],
+   "tags": [
+    "breakbeat",
+    "reese bass"
+   ],
+   "synth": {
+    "drums": "dnb",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.33,
+    "swing": 0.0,
+    "bright": 0.88,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 12,
+   "title": "Distant Ville",
+   "artist": "The Lantern Collective",
+   "genre": "électronique",
+   "subgenre": "drum and bass",
+   "year": 1996,
+   "bpm": 174,
+   "key": "B minor",
+   "moods": [
+    "énergique",
+    "frénétique"
+   ],
+   "themes": [
+    "futur",
+    "vitesse"
+   ],
+   "tags": [
+    "breakbeat",
+    "reese bass"
+   ],
+   "synth": {
+    "drums": "dnb",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.28,
+    "swing": 0.0,
+    "bright": 0.88,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 13,
+   "title": "Folle Pulse",
+   "artist": "Malik Okafor",
+   "genre": "électronique",
+   "subgenre": "drum and bass",
+   "year": 1985,
+   "bpm": 174,
+   "key": "F minor",
+   "moods": [
+    "frénétique",
+    "urbain"
+   ],
+   "themes": [
+    "vitesse",
+    "futur"
+   ],
+   "tags": [
+    "breakbeat",
+    "reese bass"
+   ],
+   "synth": {
+    "drums": "dnb",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.3,
+    "swing": 0.0,
+    "bright": 0.85,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 14,
+   "title": "Lost Echo",
+   "artist": "The Lantern Collective",
+   "genre": "électronique",
+   "subgenre": "drum and bass",
+   "year": 1990,
+   "bpm": 175,
+   "key": "E minor",
+   "moods": [
+    "frénétique",
+    "énergique"
+   ],
+   "themes": [
+    "futur",
+    "vitesse"
+   ],
+   "tags": [
+    "breakbeat",
+    "reese bass"
+   ],
+   "synth": {
+    "drums": "dnb",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.27,
+    "swing": 0.0,
+    "bright": 0.75,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 15,
+   "title": "Crystal Pulse",
+   "artist": "Malik Okafor",
+   "genre": "électronique",
+   "subgenre": "drum and bass",
+   "year": 2023,
+   "bpm": 173,
+   "key": "A# minor",
+   "moods": [
+    "énergique",
+    "urbain"
+   ],
+   "themes": [
+    "futur",
+    "jungle"
+   ],
+   "tags": [
+    "breakbeat",
+    "reese bass"
+   ],
+   "synth": {
+    "drums": "dnb",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.3,
+    "swing": 0.0,
+    "bright": 0.8,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 16,
+   "title": "Neon Desert",
+   "artist": "Sami Silva",
+   "genre": "électronique",
+   "subgenre": "ambient",
+   "year": 2020,
+   "bpm": 67,
+   "key": "C# minor",
+   "moods": [
+    "apaisant",
+    "contemplatif"
+   ],
+   "themes": [
+    "espace",
+    "méditation"
+   ],
+   "tags": [
+    "drone",
+    "nappes"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "none",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.25,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 17,
+   "title": "Wild Echo",
+   "artist": "The Shadow Ensemble",
+   "genre": "électronique",
+   "subgenre": "ambient",
+   "year": 2017,
+   "bpm": 67,
+   "key": "D# major",
+   "moods": [
+    "aérien",
+    "apaisant"
+   ],
+   "themes": [
+    "espace",
+    "méditation"
+   ],
+   "tags": [
+    "drone",
+    "nappes"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "none",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.21,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 18,
+   "title": "Midnight Garden",
+   "artist": "Sami Silva",
+   "genre": "électronique",
+   "subgenre": "ambient",
+   "year": 1991,
+   "bpm": 73,
+   "key": "D# minor",
+   "moods": [
+    "aérien",
+    "apaisant"
+   ],
+   "themes": [
+    "océan",
+    "méditation"
+   ],
+   "tags": [
+    "drone",
+    "nappes"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "none",
+    "drive": 0.03,
+    "swing": 0.0,
+    "bright": 0.36,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 19,
+   "title": "Silent Avenue",
+   "artist": "The Shadow Ensemble",
+   "genre": "électronique",
+   "subgenre": "ambient",
+   "year": 2006,
+   "bpm": 63,
+   "key": "A# major",
+   "moods": [
+    "contemplatif",
+    "apaisant"
+   ],
+   "themes": [
+    "espace",
+    "océan"
+   ],
+   "tags": [
+    "drone",
+    "nappes"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "none",
+    "drive": 0.01,
+    "swing": 0.0,
+    "bright": 0.33,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 20,
+   "title": "Nouvelle Echo",
+   "artist": "Sami Silva",
+   "genre": "électronique",
+   "subgenre": "ambient",
+   "year": 2013,
+   "bpm": 77,
+   "key": "F# major",
+   "moods": [
+    "contemplatif",
+    "apaisant"
+   ],
+   "themes": [
+    "méditation",
+    "espace"
+   ],
+   "tags": [
+    "drone",
+    "nappes"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "none",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.24,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 21,
+   "title": "Silent River",
+   "artist": "Maya Rivers",
+   "genre": "électronique",
+   "subgenre": "synthwave",
+   "year": 2009,
+   "bpm": 96,
+   "key": "G minor",
+   "moods": [
+    "rétro",
+    "cinématique"
+   ],
+   "themes": [
+    "néon",
+    "route de nuit"
+   ],
+   "tags": [
+    "arpège",
+    "gated reverb"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.09,
+    "swing": 0.0,
+    "bright": 0.64,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 22,
+   "title": "Secret Valse",
+   "artist": "The River Machine",
+   "genre": "électronique",
+   "subgenre": "synthwave",
+   "year": 2016,
+   "bpm": 100,
+   "key": "B minor",
+   "moods": [
+    "nostalgique",
+    "rétro"
+   ],
+   "themes": [
+    "années 80",
+    "route de nuit"
+   ],
+   "tags": [
+    "arpège",
+    "gated reverb"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.15,
+    "swing": 0.0,
+    "bright": 0.79,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 23,
+   "title": "Frozen Pulse",
+   "artist": "Maya Rivers",
+   "genre": "électronique",
+   "subgenre": "synthwave",
+   "year": 2018,
+   "bpm": 101,
+   "key": "B minor",
+   "moods": [
+    "nostalgique",
+    "cinématique"
+   ],
+   "themes": [
+    "années 80",
+    "route de nuit"
+   ],
+   "tags": [
+    "arpège",
+    "gated reverb"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.06,
+    "swing": 0.0,
+    "bright": 0.66,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 24,
+   "title": "Lost Dream",
+   "artist": "The River Machine",
+   "genre": "électronique",
+   "subgenre": "synthwave",
+   "year": 2022,
+   "bpm": 97,
+   "key": "A# minor",
+   "moods": [
+    "cinématique",
+    "nostalgique"
+   ],
+   "themes": [
+    "néon",
+    "route de nuit"
+   ],
+   "tags": [
+    "arpège",
+    "gated reverb"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.09,
+    "swing": 0.0,
+    "bright": 0.77,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 25,
+   "title": "Crystal Avenue",
+   "artist": "Maya Rivers",
+   "genre": "électronique",
+   "subgenre": "synthwave",
+   "year": 1993,
+   "bpm": 105,
+   "key": "D# minor",
+   "moods": [
+    "rétro",
+    "cinématique"
+   ],
+   "themes": [
+    "années 80",
+    "route de nuit"
+   ],
+   "tags": [
+    "arpège",
+    "gated reverb"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.08,
+    "swing": 0.0,
+    "bright": 0.73,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 26,
+   "title": "Golden Dream",
+   "artist": "Théo Kane",
+   "genre": "électronique",
+   "subgenre": "dubstep",
+   "year": 2008,
+   "bpm": 140,
+   "key": "G# minor",
+   "moods": [
+    "agressif",
+    "lourd"
+   ],
+   "themes": [
+    "chaos",
+    "rave"
+   ],
+   "tags": [
+    "wobble",
+    "halftime"
+   ],
+   "synth": {
+    "drums": "halftime",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.74,
+    "swing": 0.0,
+    "bright": 0.55,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 27,
+   "title": "Grande Garden",
+   "artist": "The Echo Ensemble",
+   "genre": "électronique",
+   "subgenre": "dubstep",
+   "year": 1993,
+   "bpm": 140,
+   "key": "A# minor",
+   "moods": [
+    "agressif",
+    "sombre"
+   ],
+   "themes": [
+    "chaos",
+    "drop"
+   ],
+   "tags": [
+    "wobble",
+    "halftime"
+   ],
+   "synth": {
+    "drums": "halftime",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.68,
+    "swing": 0.0,
+    "bright": 0.66,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 28,
+   "title": "Midnight Valse",
+   "artist": "Théo Kane",
+   "genre": "électronique",
+   "subgenre": "dubstep",
+   "year": 2025,
+   "bpm": 140,
+   "key": "E minor",
+   "moods": [
+    "sombre",
+    "lourd"
+   ],
+   "themes": [
+    "rave",
+    "drop"
+   ],
+   "tags": [
+    "wobble",
+    "halftime"
+   ],
+   "synth": {
+    "drums": "halftime",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.72,
+    "swing": 0.0,
+    "bright": 0.62,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 29,
+   "title": "Neon Heart",
+   "artist": "The Echo Ensemble",
+   "genre": "électronique",
+   "subgenre": "dubstep",
+   "year": 1993,
+   "bpm": 140,
+   "key": "A# minor",
+   "moods": [
+    "agressif",
+    "lourd"
+   ],
+   "themes": [
+    "chaos",
+    "rave"
+   ],
+   "tags": [
+    "wobble",
+    "halftime"
+   ],
+   "synth": {
+    "drums": "halftime",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.68,
+    "swing": 0.0,
+    "bright": 0.58,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 30,
+   "title": "Broken Lantern",
+   "artist": "Théo Kane",
+   "genre": "électronique",
+   "subgenre": "dubstep",
+   "year": 1987,
+   "bpm": 140,
+   "key": "C# minor",
+   "moods": [
+    "sombre",
+    "agressif"
+   ],
+   "themes": [
+    "rave",
+    "drop"
+   ],
+   "tags": [
+    "wobble",
+    "halftime"
+   ],
+   "synth": {
+    "drums": "halftime",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.74,
+    "swing": 0.0,
+    "bright": 0.52,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 31,
+   "title": "Hidden Ville",
+   "artist": "Nico Okafor",
+   "genre": "hip-hop",
+   "subgenre": "boom bap",
+   "year": 2020,
+   "bpm": 92,
+   "key": "D# minor",
+   "moods": [
+    "posé",
+    "nostalgique"
+   ],
+   "themes": [
+    "rue",
+    "golden age"
+   ],
+   "tags": [
+    "sample",
+    "scratch"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0.17,
+    "swing": 0.15,
+    "bright": 0.44,
+    "density": 1,
+    "noise": 0.03
+   }
+  },
+  {
+   "id": 32,
+   "title": "Wild Saison",
+   "artist": "The Storm Collective",
+   "genre": "hip-hop",
+   "subgenre": "boom bap",
+   "year": 2011,
+   "bpm": 96,
+   "key": "F# minor",
+   "moods": [
+    "posé",
+    "nostalgique"
+   ],
+   "themes": [
+    "freestyle",
+    "rue"
+   ],
+   "tags": [
+    "sample",
+    "scratch"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0.17,
+    "swing": 0.15,
+    "bright": 0.3,
+    "density": 1,
+    "noise": 0.03
+   }
+  },
+  {
+   "id": 33,
+   "title": "Paper Mirror",
+   "artist": "Nico Okafor",
+   "genre": "hip-hop",
+   "subgenre": "boom bap",
+   "year": 2014,
+   "bpm": 91,
+   "key": "F# minor",
+   "moods": [
+    "urbain",
+    "nostalgique"
+   ],
+   "themes": [
+    "rue",
+    "golden age"
+   ],
+   "tags": [
+    "sample",
+    "scratch"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0.19,
+    "swing": 0.15,
+    "bright": 0.47,
+    "density": 1,
+    "noise": 0.03
+   }
+  },
+  {
+   "id": 34,
+   "title": "Folle Machine",
+   "artist": "The Storm Collective",
+   "genre": "hip-hop",
+   "subgenre": "boom bap",
+   "year": 2007,
+   "bpm": 96,
+   "key": "F# minor",
+   "moods": [
+    "posé",
+    "urbain"
+   ],
+   "themes": [
+    "golden age",
+    "freestyle"
+   ],
+   "tags": [
+    "sample",
+    "scratch"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0.19,
+    "swing": 0.15,
+    "bright": 0.37,
+    "density": 1,
+    "noise": 0.03
+   }
+  },
+  {
+   "id": 35,
+   "title": "Lost Machine",
+   "artist": "Nico Okafor",
+   "genre": "hip-hop",
+   "subgenre": "boom bap",
+   "year": 1987,
+   "bpm": 87,
+   "key": "C# minor",
+   "moods": [
+    "posé",
+    "urbain"
+   ],
+   "themes": [
+    "freestyle",
+    "golden age"
+   ],
+   "tags": [
+    "sample",
+    "scratch"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0.13,
+    "swing": 0.15,
+    "bright": 0.48,
+    "density": 1,
+    "noise": 0.03
+   }
+  },
+  {
+   "id": 36,
+   "title": "Distant Saison",
+   "artist": "Lina Kane",
+   "genre": "hip-hop",
+   "subgenre": "trap",
+   "year": 2019,
+   "bpm": 146,
+   "key": "E minor",
+   "moods": [
+    "confiant",
+    "sombre"
+   ],
+   "themes": [
+    "succès",
+    "nuit"
+   ],
+   "tags": [
+    "808",
+    "hi-hats rapides"
+   ],
+   "synth": {
+    "drums": "trap",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.24,
+    "swing": 0.0,
+    "bright": 0.51,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 37,
+   "title": "Grande Pluie",
+   "artist": "The Avenue Project",
+   "genre": "hip-hop",
+   "subgenre": "trap",
+   "year": 1992,
+   "bpm": 147,
+   "key": "A# minor",
+   "moods": [
+    "menaçant",
+    "confiant"
+   ],
+   "themes": [
+    "nuit",
+    "succès"
+   ],
+   "tags": [
+    "808",
+    "hi-hats rapides"
+   ],
+   "synth": {
+    "drums": "trap",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.26,
+    "swing": 0.0,
+    "bright": 0.68,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 38,
+   "title": "Midnight Orbit",
+   "artist": "Lina Kane",
+   "genre": "hip-hop",
+   "subgenre": "trap",
+   "year": 2009,
+   "bpm": 146,
+   "key": "F# minor",
+   "moods": [
+    "confiant",
+    "sombre"
+   ],
+   "themes": [
+    "nuit",
+    "succès"
+   ],
+   "tags": [
+    "808",
+    "hi-hats rapides"
+   ],
+   "synth": {
+    "drums": "trap",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.26,
+    "swing": 0.0,
+    "bright": 0.64,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 39,
+   "title": "Midnight Orbit",
+   "artist": "The Avenue Project",
+   "genre": "hip-hop",
+   "subgenre": "trap",
+   "year": 2022,
+   "bpm": 145,
+   "key": "G# minor",
+   "moods": [
+    "confiant",
+    "menaçant"
+   ],
+   "themes": [
+    "succès",
+    "nuit"
+   ],
+   "tags": [
+    "808",
+    "hi-hats rapides"
+   ],
+   "synth": {
+    "drums": "trap",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.23,
+    "swing": 0.0,
+    "bright": 0.67,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 40,
+   "title": "Pâle Étoile",
+   "artist": "Lina Kane",
+   "genre": "hip-hop",
+   "subgenre": "trap",
+   "year": 1995,
+   "bpm": 146,
+   "key": "A# minor",
+   "moods": [
+    "sombre",
+    "menaçant"
+   ],
+   "themes": [
+    "nuit",
+    "succès"
+   ],
+   "tags": [
+    "808",
+    "hi-hats rapides"
+   ],
+   "synth": {
+    "drums": "trap",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.25,
+    "swing": 0.0,
+    "bright": 0.54,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 41,
+   "title": "Frozen Memory",
+   "artist": "Maya Rivers",
+   "genre": "hip-hop",
+   "subgenre": "lo-fi hip hop",
+   "year": 1989,
+   "bpm": 84,
+   "key": "D# major",
+   "moods": [
+    "mélancolique",
+    "détendu"
+   ],
+   "themes": [
+    "café",
+    "pluie"
+   ],
+   "tags": [
+    "vinyle",
+    "jazzy",
+    "chill"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.2,
+    "bright": 0.18,
+    "density": 1,
+    "noise": 0.06
+   }
+  },
+  {
+   "id": 42,
+   "title": "Neon Ville",
+   "artist": "The Valse Club",
+   "genre": "hip-hop",
+   "subgenre": "lo-fi hip hop",
+   "year": 1991,
+   "bpm": 83,
+   "key": "F# minor",
+   "moods": [
+    "détendu",
+    "doux"
+   ],
+   "themes": [
+    "café",
+    "pluie"
+   ],
+   "tags": [
+    "vinyle",
+    "jazzy",
+    "chill"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.02,
+    "swing": 0.2,
+    "bright": 0.2,
+    "density": 1,
+    "noise": 0.06
+   }
+  },
+  {
+   "id": 43,
+   "title": "Burning Signal",
+   "artist": "Maya Rivers",
+   "genre": "hip-hop",
+   "subgenre": "lo-fi hip hop",
+   "year": 2014,
+   "bpm": 86,
+   "key": "G# major",
+   "moods": [
+    "doux",
+    "mélancolique"
+   ],
+   "themes": [
+    "pluie",
+    "café"
+   ],
+   "tags": [
+    "vinyle",
+    "jazzy",
+    "chill"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.03,
+    "swing": 0.2,
+    "bright": 0.2,
+    "density": 1,
+    "noise": 0.06
+   }
+  },
+  {
+   "id": 44,
+   "title": "Crystal Ville",
+   "artist": "The Valse Club",
+   "genre": "hip-hop",
+   "subgenre": "lo-fi hip hop",
+   "year": 2000,
+   "bpm": 78,
+   "key": "D minor",
+   "moods": [
+    "doux",
+    "mélancolique"
+   ],
+   "themes": [
+    "café",
+    "étude"
+   ],
+   "tags": [
+    "vinyle",
+    "jazzy",
+    "chill"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.2,
+    "bright": 0.3,
+    "density": 1,
+    "noise": 0.06
+   }
+  },
+  {
+   "id": 45,
+   "title": "Crystal Heart",
+   "artist": "Maya Rivers",
+   "genre": "hip-hop",
+   "subgenre": "lo-fi hip hop",
+   "year": 2005,
+   "bpm": 87,
+   "key": "G minor",
+   "moods": [
+    "détendu",
+    "doux"
+   ],
+   "themes": [
+    "étude",
+    "café"
+   ],
+   "tags": [
+    "vinyle",
+    "jazzy",
+    "chill"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "piano",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.2,
+    "bright": 0.17,
+    "density": 1,
+    "noise": 0.06
+   }
+  },
+  {
+   "id": 46,
+   "title": "Blue Tide",
+   "artist": "Sami Duval",
+   "genre": "rock",
+   "subgenre": "indie rock",
+   "year": 1998,
+   "bpm": 138,
+   "key": "F# major",
+   "moods": [
+    "rêveur",
+    "nostalgique"
+   ],
+   "themes": [
+    "road trip",
+    "jeunesse"
+   ],
+   "tags": [
+    "guitares",
+    "garage"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.45,
+    "swing": 0.0,
+    "bright": 0.58,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 47,
+   "title": "Folle Avenue",
+   "artist": "The Rivière Sound System",
+   "genre": "rock",
+   "subgenre": "indie rock",
+   "year": 2011,
+   "bpm": 129,
+   "key": "G minor",
+   "moods": [
+    "nostalgique",
+    "énergique"
+   ],
+   "themes": [
+    "amitié",
+    "jeunesse"
+   ],
+   "tags": [
+    "guitares",
+    "garage"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.44,
+    "swing": 0.0,
+    "bright": 0.5,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 48,
+   "title": "Grande Valse",
+   "artist": "Sami Duval",
+   "genre": "rock",
+   "subgenre": "indie rock",
+   "year": 2010,
+   "bpm": 135,
+   "key": "F# minor",
+   "moods": [
+    "énergique",
+    "rêveur"
+   ],
+   "themes": [
+    "jeunesse",
+    "road trip"
+   ],
+   "tags": [
+    "guitares",
+    "garage"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.44,
+    "swing": 0.0,
+    "bright": 0.6,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 49,
+   "title": "Douce Orbit",
+   "artist": "The Rivière Sound System",
+   "genre": "rock",
+   "subgenre": "indie rock",
+   "year": 1993,
+   "bpm": 139,
+   "key": "A minor",
+   "moods": [
+    "rêveur",
+    "énergique"
+   ],
+   "themes": [
+    "jeunesse",
+    "amitié"
+   ],
+   "tags": [
+    "guitares",
+    "garage"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.4,
+    "swing": 0.0,
+    "bright": 0.61,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 50,
+   "title": "Folle Avenue",
+   "artist": "Sami Duval",
+   "genre": "rock",
+   "subgenre": "indie rock",
+   "year": 2002,
+   "bpm": 136,
+   "key": "F minor",
+   "moods": [
+    "rêveur",
+    "nostalgique"
+   ],
+   "themes": [
+    "jeunesse",
+    "amitié"
+   ],
+   "tags": [
+    "guitares",
+    "garage"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.43,
+    "swing": 0.0,
+    "bright": 0.54,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 51,
+   "title": "Paper Mirror",
+   "artist": "Léa Moreau",
+   "genre": "rock",
+   "subgenre": "punk",
+   "year": 1986,
+   "bpm": 184,
+   "key": "A# major",
+   "moods": [
+    "rebelle",
+    "énergique"
+   ],
+   "themes": [
+    "révolte",
+    "jeunesse"
+   ],
+   "tags": [
+    "power chords",
+    "DIY"
+   ],
+   "synth": {
+    "drums": "punk",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.75,
+    "swing": 0.0,
+    "bright": 0.61,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 52,
+   "title": "Crystal Ville",
+   "artist": "The Storm Sound System",
+   "genre": "rock",
+   "subgenre": "punk",
+   "year": 2008,
+   "bpm": 170,
+   "key": "A major",
+   "moods": [
+    "énergique",
+    "rebelle"
+   ],
+   "themes": [
+    "révolte",
+    "jeunesse"
+   ],
+   "tags": [
+    "power chords",
+    "DIY"
+   ],
+   "synth": {
+    "drums": "punk",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.8,
+    "swing": 0.0,
+    "bright": 0.79,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 53,
+   "title": "Grande Avenue",
+   "artist": "Léa Moreau",
+   "genre": "rock",
+   "subgenre": "punk",
+   "year": 2010,
+   "bpm": 187,
+   "key": "A major",
+   "moods": [
+    "rebelle",
+    "énergique"
+   ],
+   "themes": [
+    "anarchie",
+    "révolte"
+   ],
+   "tags": [
+    "power chords",
+    "DIY"
+   ],
+   "synth": {
+    "drums": "punk",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.78,
+    "swing": 0.0,
+    "bright": 0.61,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 54,
+   "title": "Eternal Saison",
+   "artist": "The Storm Sound System",
+   "genre": "rock",
+   "subgenre": "punk",
+   "year": 1992,
+   "bpm": 190,
+   "key": "B major",
+   "moods": [
+    "énergique",
+    "rebelle"
+   ],
+   "themes": [
+    "jeunesse",
+    "anarchie"
+   ],
+   "tags": [
+    "power chords",
+    "DIY"
+   ],
+   "synth": {
+    "drums": "punk",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.84,
+    "swing": 0.0,
+    "bright": 0.75,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 55,
+   "title": "Nouvelle Orbit",
+   "artist": "Léa Moreau",
+   "genre": "rock",
+   "subgenre": "punk",
+   "year": 2016,
+   "bpm": 168,
+   "key": "C# major",
+   "moods": [
+    "rageur",
+    "énergique"
+   ],
+   "themes": [
+    "anarchie",
+    "jeunesse"
+   ],
+   "tags": [
+    "power chords",
+    "DIY"
+   ],
+   "synth": {
+    "drums": "punk",
+    "lead": "saw",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.78,
+    "swing": 0.0,
+    "bright": 0.7,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 56,
+   "title": "Frozen Shadow",
+   "artist": "Iris Laurent",
+   "genre": "rock",
+   "subgenre": "heavy metal",
+   "year": 2012,
+   "bpm": 146,
+   "key": "A minor",
+   "moods": [
+    "sombre",
+    "épique"
+   ],
+   "themes": [
+    "mythologie",
+    "guerre"
+   ],
+   "tags": [
+    "riffs",
+    "double pédale"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.95,
+    "swing": 0.0,
+    "bright": 0.86,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 57,
+   "title": "Burning Desert",
+   "artist": "The River Ensemble",
+   "genre": "rock",
+   "subgenre": "heavy metal",
+   "year": 2024,
+   "bpm": 142,
+   "key": "E minor",
+   "moods": [
+    "épique",
+    "sombre"
+   ],
+   "themes": [
+    "guerre",
+    "mythologie"
+   ],
+   "tags": [
+    "riffs",
+    "double pédale"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.92,
+    "swing": 0.0,
+    "bright": 0.88,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 58,
+   "title": "Crystal Heart",
+   "artist": "Iris Laurent",
+   "genre": "rock",
+   "subgenre": "heavy metal",
+   "year": 2002,
+   "bpm": 138,
+   "key": "D minor",
+   "moods": [
+    "sombre",
+    "épique"
+   ],
+   "themes": [
+    "destin",
+    "guerre"
+   ],
+   "tags": [
+    "riffs",
+    "double pédale"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.94,
+    "swing": 0.0,
+    "bright": 0.8,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 59,
+   "title": "Secret Ville",
+   "artist": "The River Ensemble",
+   "genre": "rock",
+   "subgenre": "heavy metal",
+   "year": 2000,
+   "bpm": 144,
+   "key": "C# minor",
+   "moods": [
+    "épique",
+    "sombre"
+   ],
+   "themes": [
+    "mythologie",
+    "guerre"
+   ],
+   "tags": [
+    "riffs",
+    "double pédale"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.94,
+    "swing": 0.0,
+    "bright": 0.75,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 60,
+   "title": "Lunar Valse",
+   "artist": "Iris Laurent",
+   "genre": "rock",
+   "subgenre": "heavy metal",
+   "year": 2022,
+   "bpm": 123,
+   "key": "E minor",
+   "moods": [
+    "épique",
+    "sombre"
+   ],
+   "themes": [
+    "mythologie",
+    "destin"
+   ],
+   "tags": [
+    "riffs",
+    "double pédale"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "square",
+    "pad": "none",
+    "bass": "saw",
+    "drive": 0.97,
+    "swing": 0.0,
+    "bright": 0.74,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 61,
+   "title": "Velvet Étoile",
+   "artist": "Hugo Novak",
+   "genre": "rock",
+   "subgenre": "post-rock",
+   "year": 2019,
+   "bpm": 100,
+   "key": "D# minor",
+   "moods": [
+    "épique",
+    "cinématique"
+   ],
+   "themes": [
+    "paysage",
+    "hiver"
+   ],
+   "tags": [
+    "instrumental",
+    "delay"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "pluck",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.27,
+    "swing": 0.0,
+    "bright": 0.42,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 62,
+   "title": "Distant Memory",
+   "artist": "The Machine Club",
+   "genre": "rock",
+   "subgenre": "post-rock",
+   "year": 2003,
+   "bpm": 73,
+   "key": "E minor",
+   "moods": [
+    "cinématique",
+    "contemplatif"
+   ],
+   "themes": [
+    "paysage",
+    "crescendo"
+   ],
+   "tags": [
+    "instrumental",
+    "delay"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "pluck",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.35,
+    "swing": 0.0,
+    "bright": 0.54,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 63,
+   "title": "Crystal Tide",
+   "artist": "Hugo Novak",
+   "genre": "rock",
+   "subgenre": "post-rock",
+   "year": 1988,
+   "bpm": 87,
+   "key": "E major",
+   "moods": [
+    "contemplatif",
+    "cinématique"
+   ],
+   "themes": [
+    "hiver",
+    "crescendo"
+   ],
+   "tags": [
+    "instrumental",
+    "delay"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "pluck",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.3,
+    "swing": 0.0,
+    "bright": 0.4,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 64,
+   "title": "Burning Heart",
+   "artist": "The Machine Club",
+   "genre": "rock",
+   "subgenre": "post-rock",
+   "year": 1996,
+   "bpm": 100,
+   "key": "C major",
+   "moods": [
+    "cinématique",
+    "contemplatif"
+   ],
+   "themes": [
+    "crescendo",
+    "paysage"
+   ],
+   "tags": [
+    "instrumental",
+    "delay"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "pluck",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.3,
+    "swing": 0.0,
+    "bright": 0.51,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 65,
+   "title": "Grande Tide",
+   "artist": "Hugo Novak",
+   "genre": "rock",
+   "subgenre": "post-rock",
+   "year": 1994,
+   "bpm": 74,
+   "key": "F# major",
+   "moods": [
+    "épique",
+    "contemplatif"
+   ],
+   "themes": [
+    "paysage",
+    "hiver"
+   ],
+   "tags": [
+    "instrumental",
+    "delay"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "pluck",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.31,
+    "swing": 0.0,
+    "bright": 0.5,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 66,
+   "title": "Lunar Pluie",
+   "artist": "Omar Laurent",
+   "genre": "jazz",
+   "subgenre": "swing",
+   "year": 2002,
+   "bpm": 157,
+   "key": "G# major",
+   "moods": [
+    "élégant",
+    "joyeux"
+   ],
+   "themes": [
+    "bal",
+    "big band"
+   ],
+   "tags": [
+    "cuivres",
+    "walking bass"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.04,
+    "swing": 0.3,
+    "bright": 0.48,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 67,
+   "title": "Electric Dream",
+   "artist": "The Memory Project",
+   "genre": "jazz",
+   "subgenre": "swing",
+   "year": 1976,
+   "bpm": 165,
+   "key": "A# major",
+   "moods": [
+    "joyeux",
+    "dansant"
+   ],
+   "themes": [
+    "big band",
+    "années 30"
+   ],
+   "tags": [
+    "cuivres",
+    "walking bass"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.02,
+    "swing": 0.3,
+    "bright": 0.44,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 68,
+   "title": "Paper Skyline",
+   "artist": "Omar Laurent",
+   "genre": "jazz",
+   "subgenre": "swing",
+   "year": 2010,
+   "bpm": 148,
+   "key": "B major",
+   "moods": [
+    "dansant",
+    "élégant"
+   ],
+   "themes": [
+    "big band",
+    "bal"
+   ],
+   "tags": [
+    "cuivres",
+    "walking bass"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.3,
+    "bright": 0.52,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 69,
+   "title": "Midnight Orbit",
+   "artist": "The Memory Project",
+   "genre": "jazz",
+   "subgenre": "swing",
+   "year": 1972,
+   "bpm": 164,
+   "key": "A# major",
+   "moods": [
+    "joyeux",
+    "dansant"
+   ],
+   "themes": [
+    "années 30",
+    "big band"
+   ],
+   "tags": [
+    "cuivres",
+    "walking bass"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.03,
+    "swing": 0.3,
+    "bright": 0.52,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 70,
+   "title": "Dernière Lumière",
+   "artist": "Omar Laurent",
+   "genre": "jazz",
+   "subgenre": "swing",
+   "year": 2001,
+   "bpm": 148,
+   "key": "C major",
+   "moods": [
+    "élégant",
+    "joyeux"
+   ],
+   "themes": [
+    "années 30",
+    "bal"
+   ],
+   "tags": [
+    "cuivres",
+    "walking bass"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.3,
+    "bright": 0.43,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 71,
+   "title": "Blue Étoile",
+   "artist": "Sami Okafor",
+   "genre": "jazz",
+   "subgenre": "bossa nova",
+   "year": 1985,
+   "bpm": 129,
+   "key": "G minor",
+   "moods": [
+    "romantique",
+    "doux"
+   ],
+   "themes": [
+    "plage",
+    "Rio"
+   ],
+   "tags": [
+    "guitare nylon",
+    "brésil"
+   ],
+   "synth": {
+    "drums": "bossa",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.05,
+    "bright": 0.27,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 72,
+   "title": "Folle Ville",
+   "artist": "The Pulse Ensemble",
+   "genre": "jazz",
+   "subgenre": "bossa nova",
+   "year": 1976,
+   "bpm": 125,
+   "key": "A# major",
+   "moods": [
+    "ensoleillé",
+    "romantique"
+   ],
+   "themes": [
+    "amour",
+    "plage"
+   ],
+   "tags": [
+    "guitare nylon",
+    "brésil"
+   ],
+   "synth": {
+    "drums": "bossa",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "pluck",
+    "drive": 0.01,
+    "swing": 0.05,
+    "bright": 0.41,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 73,
+   "title": "Frozen Storm",
+   "artist": "Sami Okafor",
+   "genre": "jazz",
+   "subgenre": "bossa nova",
+   "year": 1991,
+   "bpm": 120,
+   "key": "A# minor",
+   "moods": [
+    "romantique",
+    "doux"
+   ],
+   "themes": [
+    "plage",
+    "amour"
+   ],
+   "tags": [
+    "guitare nylon",
+    "brésil"
+   ],
+   "synth": {
+    "drums": "bossa",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "pluck",
+    "drive": 0.05,
+    "swing": 0.05,
+    "bright": 0.41,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 74,
+   "title": "Last Lumière",
+   "artist": "The Pulse Ensemble",
+   "genre": "jazz",
+   "subgenre": "bossa nova",
+   "year": 2013,
+   "bpm": 127,
+   "key": "B minor",
+   "moods": [
+    "doux",
+    "romantique"
+   ],
+   "themes": [
+    "plage",
+    "amour"
+   ],
+   "tags": [
+    "guitare nylon",
+    "brésil"
+   ],
+   "synth": {
+    "drums": "bossa",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "pluck",
+    "drive": 0.02,
+    "swing": 0.05,
+    "bright": 0.35,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 75,
+   "title": "Nouvelle Pulse",
+   "artist": "Sami Okafor",
+   "genre": "jazz",
+   "subgenre": "bossa nova",
+   "year": 2017,
+   "bpm": 110,
+   "key": "F minor",
+   "moods": [
+    "ensoleillé",
+    "romantique"
+   ],
+   "themes": [
+    "amour",
+    "plage"
+   ],
+   "tags": [
+    "guitare nylon",
+    "brésil"
+   ],
+   "synth": {
+    "drums": "bossa",
+    "lead": "pluck",
+    "pad": "sine",
+    "bass": "pluck",
+    "drive": 0.03,
+    "swing": 0.05,
+    "bright": 0.27,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 76,
+   "title": "Lunar Shadow",
+   "artist": "Zoé Silva",
+   "genre": "jazz",
+   "subgenre": "jazz fusion",
+   "year": 2021,
+   "bpm": 122,
+   "key": "C minor",
+   "moods": [
+    "complexe",
+    "virtuose"
+   ],
+   "themes": [
+    "improvisation",
+    "ville"
+   ],
+   "tags": [
+    "rhodes",
+    "slap"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "saw",
+    "drive": 0.1,
+    "swing": 0.1,
+    "bright": 0.49,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 77,
+   "title": "Golden Dream",
+   "artist": "The Memory Brothers",
+   "genre": "jazz",
+   "subgenre": "jazz fusion",
+   "year": 2018,
+   "bpm": 129,
+   "key": "E minor",
+   "moods": [
+    "virtuose",
+    "complexe"
+   ],
+   "themes": [
+    "improvisation",
+    "ville"
+   ],
+   "tags": [
+    "rhodes",
+    "slap"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "saw",
+    "drive": 0.11,
+    "swing": 0.1,
+    "bright": 0.56,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 78,
+   "title": "Blue Lumière",
+   "artist": "Zoé Silva",
+   "genre": "jazz",
+   "subgenre": "jazz fusion",
+   "year": 1995,
+   "bpm": 115,
+   "key": "B minor",
+   "moods": [
+    "virtuose",
+    "complexe"
+   ],
+   "themes": [
+    "ville",
+    "improvisation"
+   ],
+   "tags": [
+    "rhodes",
+    "slap"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "saw",
+    "drive": 0.12,
+    "swing": 0.1,
+    "bright": 0.51,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 79,
+   "title": "Broken Pluie",
+   "artist": "The Memory Brothers",
+   "genre": "jazz",
+   "subgenre": "jazz fusion",
+   "year": 1969,
+   "bpm": 108,
+   "key": "D# minor",
+   "moods": [
+    "complexe",
+    "groovy"
+   ],
+   "themes": [
+    "ville",
+    "voyage"
+   ],
+   "tags": [
+    "rhodes",
+    "slap"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "saw",
+    "drive": 0.1,
+    "swing": 0.1,
+    "bright": 0.63,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 80,
+   "title": "Lost Valse",
+   "artist": "Zoé Silva",
+   "genre": "jazz",
+   "subgenre": "jazz fusion",
+   "year": 1996,
+   "bpm": 127,
+   "key": "E minor",
+   "moods": [
+    "virtuose",
+    "complexe"
+   ],
+   "themes": [
+    "ville",
+    "voyage"
+   ],
+   "tags": [
+    "rhodes",
+    "slap"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "saw",
+    "drive": 0.13,
+    "swing": 0.1,
+    "bright": 0.6,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 81,
+   "title": "Petite Dream",
+   "artist": "Hugo Silva",
+   "genre": "classique",
+   "subgenre": "baroque",
+   "year": 2001,
+   "bpm": 104,
+   "key": "G minor",
+   "moods": [
+    "majestueux",
+    "élégant"
+   ],
+   "themes": [
+    "cour royale",
+    "église"
+   ],
+   "tags": [
+    "clavecin",
+    "fugue"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.04,
+    "swing": 0.0,
+    "bright": 0.69,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 82,
+   "title": "Grande Saison",
+   "artist": "The Lantern Ensemble",
+   "genre": "classique",
+   "subgenre": "baroque",
+   "year": 2017,
+   "bpm": 89,
+   "key": "B minor",
+   "moods": [
+    "élégant",
+    "majestueux"
+   ],
+   "themes": [
+    "cour royale",
+    "église"
+   ],
+   "tags": [
+    "clavecin",
+    "fugue"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.68,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 83,
+   "title": "Neon Étoile",
+   "artist": "Hugo Silva",
+   "genre": "classique",
+   "subgenre": "baroque",
+   "year": 1974,
+   "bpm": 106,
+   "key": "G major",
+   "moods": [
+    "solennel",
+    "majestueux"
+   ],
+   "themes": [
+    "cour royale",
+    "église"
+   ],
+   "tags": [
+    "clavecin",
+    "fugue"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.04,
+    "swing": 0.0,
+    "bright": 0.52,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 84,
+   "title": "Golden Pluie",
+   "artist": "The Lantern Ensemble",
+   "genre": "classique",
+   "subgenre": "baroque",
+   "year": 1986,
+   "bpm": 114,
+   "key": "F minor",
+   "moods": [
+    "élégant",
+    "solennel"
+   ],
+   "themes": [
+    "contrepoint",
+    "église"
+   ],
+   "tags": [
+    "clavecin",
+    "fugue"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.62,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 85,
+   "title": "Lunar Dream",
+   "artist": "Hugo Silva",
+   "genre": "classique",
+   "subgenre": "baroque",
+   "year": 2012,
+   "bpm": 85,
+   "key": "A major",
+   "moods": [
+    "élégant",
+    "majestueux"
+   ],
+   "themes": [
+    "contrepoint",
+    "cour royale"
+   ],
+   "tags": [
+    "clavecin",
+    "fugue"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.01,
+    "swing": 0.0,
+    "bright": 0.51,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 86,
+   "title": "Hidden Storm",
+   "artist": "Théo Duval",
+   "genre": "classique",
+   "subgenre": "piano romantique",
+   "year": 1992,
+   "bpm": 64,
+   "key": "C minor",
+   "moods": [
+    "mélancolique",
+    "tendre"
+   ],
+   "themes": [
+    "nocturne",
+    "amour"
+   ],
+   "tags": [
+    "piano solo",
+    "rubato"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "none",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.36,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 87,
+   "title": "Eternal Valse",
+   "artist": "The Rivière Club",
+   "genre": "classique",
+   "subgenre": "piano romantique",
+   "year": 1980,
+   "bpm": 75,
+   "key": "D minor",
+   "moods": [
+    "passionné",
+    "mélancolique"
+   ],
+   "themes": [
+    "amour",
+    "nostalgie"
+   ],
+   "tags": [
+    "piano solo",
+    "rubato"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "none",
+    "drive": 0.04,
+    "swing": 0.0,
+    "bright": 0.32,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 88,
+   "title": "Pâle Shadow",
+   "artist": "Théo Duval",
+   "genre": "classique",
+   "subgenre": "piano romantique",
+   "year": 2022,
+   "bpm": 69,
+   "key": "G major",
+   "moods": [
+    "passionné",
+    "mélancolique"
+   ],
+   "themes": [
+    "amour",
+    "nostalgie"
+   ],
+   "tags": [
+    "piano solo",
+    "rubato"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "none",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.35,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 89,
+   "title": "Petite Machine",
+   "artist": "The Rivière Club",
+   "genre": "classique",
+   "subgenre": "piano romantique",
+   "year": 1994,
+   "bpm": 87,
+   "key": "A major",
+   "moods": [
+    "tendre",
+    "mélancolique"
+   ],
+   "themes": [
+    "nostalgie",
+    "nocturne"
+   ],
+   "tags": [
+    "piano solo",
+    "rubato"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "none",
+    "drive": 0.05,
+    "swing": 0.0,
+    "bright": 0.36,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 90,
+   "title": "Lunar Rivière",
+   "artist": "Théo Duval",
+   "genre": "classique",
+   "subgenre": "piano romantique",
+   "year": 1983,
+   "bpm": 60,
+   "key": "D# minor",
+   "moods": [
+    "passionné",
+    "tendre"
+   ],
+   "themes": [
+    "nostalgie",
+    "amour"
+   ],
+   "tags": [
+    "piano solo",
+    "rubato"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "piano",
+    "pad": "none",
+    "bass": "none",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.38,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 91,
+   "title": "Douce Mirror",
+   "artist": "Yann Moreau",
+   "genre": "classique",
+   "subgenre": "minimalisme",
+   "year": 2004,
+   "bpm": 98,
+   "key": "D# major",
+   "moods": [
+    "méditatif",
+    "hypnotique"
+   ],
+   "themes": [
+    "lumière",
+    "répétition"
+   ],
+   "tags": [
+    "ostinato",
+    "phasing"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "none",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.47,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 92,
+   "title": "Hidden Étoile",
+   "artist": "The Memory Brothers",
+   "genre": "classique",
+   "subgenre": "minimalisme",
+   "year": 1973,
+   "bpm": 92,
+   "key": "E major",
+   "moods": [
+    "lumineux",
+    "méditatif"
+   ],
+   "themes": [
+    "lumière",
+    "temps"
+   ],
+   "tags": [
+    "ostinato",
+    "phasing"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "none",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.51,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 93,
+   "title": "Hidden Pulse",
+   "artist": "Yann Moreau",
+   "genre": "classique",
+   "subgenre": "minimalisme",
+   "year": 1997,
+   "bpm": 119,
+   "key": "D# major",
+   "moods": [
+    "lumineux",
+    "hypnotique"
+   ],
+   "themes": [
+    "temps",
+    "lumière"
+   ],
+   "tags": [
+    "ostinato",
+    "phasing"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "none",
+    "drive": 0.0,
+    "swing": 0.0,
+    "bright": 0.38,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 94,
+   "title": "Burning Echo",
+   "artist": "The Memory Brothers",
+   "genre": "classique",
+   "subgenre": "minimalisme",
+   "year": 1974,
+   "bpm": 114,
+   "key": "B major",
+   "moods": [
+    "hypnotique",
+    "lumineux"
+   ],
+   "themes": [
+    "lumière",
+    "temps"
+   ],
+   "tags": [
+    "ostinato",
+    "phasing"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "none",
+    "drive": 0.03,
+    "swing": 0.0,
+    "bright": 0.52,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 95,
+   "title": "Burning Storm",
+   "artist": "Yann Moreau",
+   "genre": "classique",
+   "subgenre": "minimalisme",
+   "year": 2008,
+   "bpm": 113,
+   "key": "F# major",
+   "moods": [
+    "méditatif",
+    "lumineux"
+   ],
+   "themes": [
+    "lumière",
+    "temps"
+   ],
+   "tags": [
+    "ostinato",
+    "phasing"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "none",
+    "drive": 0.0,
+    "swing": 0.0,
+    "bright": 0.35,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 96,
+   "title": "Wild Memory",
+   "artist": "Hugo Kane",
+   "genre": "pop",
+   "subgenre": "synth-pop",
+   "year": 1999,
+   "bpm": 112,
+   "key": "C major",
+   "moods": [
+    "nostalgique",
+    "dansant"
+   ],
+   "themes": [
+    "années 80",
+    "soirée"
+   ],
+   "tags": [
+    "synthés",
+    "refrain"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.09,
+    "swing": 0.0,
+    "bright": 0.72,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 97,
+   "title": "Lunar Harbor",
+   "artist": "The Valse Sound System",
+   "genre": "pop",
+   "subgenre": "synth-pop",
+   "year": 1992,
+   "bpm": 113,
+   "key": "C# major",
+   "moods": [
+    "joyeux",
+    "nostalgique"
+   ],
+   "themes": [
+    "soirée",
+    "années 80"
+   ],
+   "tags": [
+    "synthés",
+    "refrain"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.09,
+    "swing": 0.0,
+    "bright": 0.63,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 98,
+   "title": "Secret Orbit",
+   "artist": "Hugo Kane",
+   "genre": "pop",
+   "subgenre": "synth-pop",
+   "year": 2022,
+   "bpm": 114,
+   "key": "A# major",
+   "moods": [
+    "dansant",
+    "joyeux"
+   ],
+   "themes": [
+    "soirée",
+    "années 80"
+   ],
+   "tags": [
+    "synthés",
+    "refrain"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.07,
+    "swing": 0.0,
+    "bright": 0.79,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 99,
+   "title": "Burning Dream",
+   "artist": "The Valse Sound System",
+   "genre": "pop",
+   "subgenre": "synth-pop",
+   "year": 2008,
+   "bpm": 113,
+   "key": "C major",
+   "moods": [
+    "nostalgique",
+    "dansant"
+   ],
+   "themes": [
+    "années 80",
+    "soirée"
+   ],
+   "tags": [
+    "synthés",
+    "refrain"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.02,
+    "swing": 0.0,
+    "bright": 0.74,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 100,
+   "title": "Nouvelle Lumière",
+   "artist": "Hugo Kane",
+   "genre": "pop",
+   "subgenre": "synth-pop",
+   "year": 2014,
+   "bpm": 112,
+   "key": "F# major",
+   "moods": [
+    "nostalgique",
+    "joyeux"
+   ],
+   "themes": [
+    "années 80",
+    "amour"
+   ],
+   "tags": [
+    "synthés",
+    "refrain"
+   ],
+   "synth": {
+    "drums": "four_floor",
+    "lead": "square",
+    "pad": "saw",
+    "bass": "saw",
+    "drive": 0.1,
+    "swing": 0.0,
+    "bright": 0.66,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 101,
+   "title": "Lost Mirror",
+   "artist": "Nico Silva",
+   "genre": "pop",
+   "subgenre": "dream pop",
+   "year": 1999,
+   "bpm": 90,
+   "key": "C# major",
+   "moods": [
+    "rêveur",
+    "mélancolique"
+   ],
+   "themes": [
+    "été",
+    "souvenir"
+   ],
+   "tags": [
+    "reverb",
+    "shoegaze"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.11,
+    "swing": 0.0,
+    "bright": 0.42,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 102,
+   "title": "Grande Pluie",
+   "artist": "The Dream Trio",
+   "genre": "pop",
+   "subgenre": "dream pop",
+   "year": 1986,
+   "bpm": 84,
+   "key": "G# major",
+   "moods": [
+    "rêveur",
+    "vaporeux"
+   ],
+   "themes": [
+    "souvenir",
+    "été"
+   ],
+   "tags": [
+    "reverb",
+    "shoegaze"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.07,
+    "swing": 0.0,
+    "bright": 0.3,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 103,
+   "title": "Blue Pulse",
+   "artist": "Nico Silva",
+   "genre": "pop",
+   "subgenre": "dream pop",
+   "year": 1992,
+   "bpm": 103,
+   "key": "D major",
+   "moods": [
+    "rêveur",
+    "vaporeux"
+   ],
+   "themes": [
+    "été",
+    "adolescence"
+   ],
+   "tags": [
+    "reverb",
+    "shoegaze"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.06,
+    "swing": 0.0,
+    "bright": 0.3,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 104,
+   "title": "Silent Étoile",
+   "artist": "The Dream Trio",
+   "genre": "pop",
+   "subgenre": "dream pop",
+   "year": 2018,
+   "bpm": 89,
+   "key": "G major",
+   "moods": [
+    "vaporeux",
+    "rêveur"
+   ],
+   "themes": [
+    "souvenir",
+    "été"
+   ],
+   "tags": [
+    "reverb",
+    "shoegaze"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.14,
+    "swing": 0.0,
+    "bright": 0.35,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 105,
+   "title": "Burning Echo",
+   "artist": "Nico Silva",
+   "genre": "pop",
+   "subgenre": "dream pop",
+   "year": 1990,
+   "bpm": 90,
+   "key": "F# minor",
+   "moods": [
+    "mélancolique",
+    "rêveur"
+   ],
+   "themes": [
+    "souvenir",
+    "adolescence"
+   ],
+   "tags": [
+    "reverb",
+    "shoegaze"
+   ],
+   "synth": {
+    "drums": "rock",
+    "lead": "sine",
+    "pad": "saw",
+    "bass": "sub",
+    "drive": 0.1,
+    "swing": 0.0,
+    "bright": 0.39,
+    "density": 2,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 106,
+   "title": "Pâle Rivière",
+   "artist": "Elsa Silva",
+   "genre": "pop",
+   "subgenre": "chanson française",
+   "year": 1992,
+   "bpm": 117,
+   "key": "G minor",
+   "moods": [
+    "tendre",
+    "poétique"
+   ],
+   "themes": [
+    "amour",
+    "quotidien"
+   ],
+   "tags": [
+    "texte",
+    "accordéon"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.15,
+    "bright": 0.4,
+    "density": 2,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 107,
+   "title": "Blue Étoile",
+   "artist": "The Avenue Project",
+   "genre": "pop",
+   "subgenre": "chanson française",
+   "year": 1991,
+   "bpm": 100,
+   "key": "F# major",
+   "moods": [
+    "mélancolique",
+    "tendre"
+   ],
+   "themes": [
+    "quotidien",
+    "amour"
+   ],
+   "tags": [
+    "texte",
+    "accordéon"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.15,
+    "bright": 0.37,
+    "density": 2,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 108,
+   "title": "Golden Lumière",
+   "artist": "Elsa Silva",
+   "genre": "pop",
+   "subgenre": "chanson française",
+   "year": 1990,
+   "bpm": 92,
+   "key": "D minor",
+   "moods": [
+    "mélancolique",
+    "poétique"
+   ],
+   "themes": [
+    "quotidien",
+    "amour"
+   ],
+   "tags": [
+    "texte",
+    "accordéon"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.15,
+    "bright": 0.44,
+    "density": 2,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 109,
+   "title": "Secret Heart",
+   "artist": "The Avenue Project",
+   "genre": "pop",
+   "subgenre": "chanson française",
+   "year": 1992,
+   "bpm": 103,
+   "key": "G# major",
+   "moods": [
+    "mélancolique",
+    "tendre"
+   ],
+   "themes": [
+    "quotidien",
+    "Paris"
+   ],
+   "tags": [
+    "texte",
+    "accordéon"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.05,
+    "swing": 0.15,
+    "bright": 0.31,
+    "density": 2,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 110,
+   "title": "Distant Mirror",
+   "artist": "Elsa Silva",
+   "genre": "pop",
+   "subgenre": "chanson française",
+   "year": 1994,
+   "bpm": 111,
+   "key": "A minor",
+   "moods": [
+    "mélancolique",
+    "poétique"
+   ],
+   "themes": [
+    "Paris",
+    "amour"
+   ],
+   "tags": [
+    "texte",
+    "accordéon"
+   ],
+   "synth": {
+    "drums": "swing",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.15,
+    "bright": 0.36,
+    "density": 2,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 111,
+   "title": "Rouge Memory",
+   "artist": "Chloé Silva",
+   "genre": "reggae",
+   "subgenre": "roots reggae",
+   "year": 2004,
+   "bpm": 80,
+   "key": "F# minor",
+   "moods": [
+    "détendu",
+    "positif"
+   ],
+   "themes": [
+    "résistance",
+    "paix"
+   ],
+   "tags": [
+    "skank",
+    "one drop"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0.05,
+    "swing": 0.1,
+    "bright": 0.47,
+    "density": 1,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 112,
+   "title": "Wild Storm",
+   "artist": "The Garden Club",
+   "genre": "reggae",
+   "subgenre": "roots reggae",
+   "year": 1965,
+   "bpm": 72,
+   "key": "D minor",
+   "moods": [
+    "positif",
+    "spirituel"
+   ],
+   "themes": [
+    "Jah",
+    "résistance"
+   ],
+   "tags": [
+    "skank",
+    "one drop"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0.03,
+    "swing": 0.1,
+    "bright": 0.35,
+    "density": 1,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 113,
+   "title": "Blue Shadow",
+   "artist": "Chloé Silva",
+   "genre": "reggae",
+   "subgenre": "roots reggae",
+   "year": 1986,
+   "bpm": 72,
+   "key": "C# minor",
+   "moods": [
+    "spirituel",
+    "détendu"
+   ],
+   "themes": [
+    "résistance",
+    "paix"
+   ],
+   "tags": [
+    "skank",
+    "one drop"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.1,
+    "bright": 0.45,
+    "density": 1,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 114,
+   "title": "Silent Valse",
+   "artist": "The Garden Club",
+   "genre": "reggae",
+   "subgenre": "roots reggae",
+   "year": 1970,
+   "bpm": 74,
+   "key": "C minor",
+   "moods": [
+    "spirituel",
+    "détendu"
+   ],
+   "themes": [
+    "paix",
+    "résistance"
+   ],
+   "tags": [
+    "skank",
+    "one drop"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0.03,
+    "swing": 0.1,
+    "bright": 0.33,
+    "density": 1,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 115,
+   "title": "Hidden Orbit",
+   "artist": "Chloé Silva",
+   "genre": "reggae",
+   "subgenre": "roots reggae",
+   "year": 1972,
+   "bpm": 74,
+   "key": "E major",
+   "moods": [
+    "détendu",
+    "spirituel"
+   ],
+   "themes": [
+    "résistance",
+    "paix"
+   ],
+   "tags": [
+    "skank",
+    "one drop"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "organ",
+    "pad": "none",
+    "bass": "sub",
+    "drive": 0.0,
+    "swing": 0.1,
+    "bright": 0.34,
+    "density": 1,
+    "noise": 0.01
+   }
+  },
+  {
+   "id": 116,
+   "title": "Folle Signal",
+   "artist": "Nico Rivers",
+   "genre": "reggae",
+   "subgenre": "dub",
+   "year": 2013,
+   "bpm": 72,
+   "key": "C minor",
+   "moods": [
+    "planant",
+    "hypnotique"
+   ],
+   "themes": [
+    "sound system",
+    "basse"
+   ],
+   "tags": [
+    "delay",
+    "bass heavy"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.09,
+    "swing": 0.1,
+    "bright": 0.19,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 117,
+   "title": "Secret Rivière",
+   "artist": "The Avenue Project",
+   "genre": "reggae",
+   "subgenre": "dub",
+   "year": 1979,
+   "bpm": 76,
+   "key": "B minor",
+   "moods": [
+    "hypnotique",
+    "planant"
+   ],
+   "themes": [
+    "sound system",
+    "écho"
+   ],
+   "tags": [
+    "delay",
+    "bass heavy"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.01,
+    "swing": 0.1,
+    "bright": 0.24,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 118,
+   "title": "Nouvelle Heart",
+   "artist": "Nico Rivers",
+   "genre": "reggae",
+   "subgenre": "dub",
+   "year": 2001,
+   "bpm": 74,
+   "key": "F# minor",
+   "moods": [
+    "hypnotique",
+    "planant"
+   ],
+   "themes": [
+    "basse",
+    "écho"
+   ],
+   "tags": [
+    "delay",
+    "bass heavy"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.09,
+    "swing": 0.1,
+    "bright": 0.15,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 119,
+   "title": "Electric Saison",
+   "artist": "The Avenue Project",
+   "genre": "reggae",
+   "subgenre": "dub",
+   "year": 2025,
+   "bpm": 77,
+   "key": "C# minor",
+   "moods": [
+    "planant",
+    "hypnotique"
+   ],
+   "themes": [
+    "sound system",
+    "écho"
+   ],
+   "tags": [
+    "delay",
+    "bass heavy"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.1,
+    "swing": 0.1,
+    "bright": 0.23,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 120,
+   "title": "Golden Avenue",
+   "artist": "Nico Rivers",
+   "genre": "reggae",
+   "subgenre": "dub",
+   "year": 2020,
+   "bpm": 72,
+   "key": "D# minor",
+   "moods": [
+    "hypnotique",
+    "planant"
+   ],
+   "themes": [
+    "sound system",
+    "écho"
+   ],
+   "tags": [
+    "delay",
+    "bass heavy"
+   ],
+   "synth": {
+    "drums": "onedrop",
+    "lead": "sine",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.04,
+    "swing": 0.1,
+    "bright": 0.24,
+    "density": 0,
+    "noise": 0.02
+   }
+  },
+  {
+   "id": 121,
+   "title": "Douce Lumière",
+   "artist": "Tom Kane",
+   "genre": "funk/soul",
+   "subgenre": "funk",
+   "year": 1974,
+   "bpm": 107,
+   "key": "F minor",
+   "moods": [
+    "groovy",
+    "sensuel"
+   ],
+   "themes": [
+    "soirée",
+    "danse"
+   ],
+   "tags": [
+    "slap",
+    "wah-wah"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.2,
+    "swing": 0.12,
+    "bright": 0.57,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 122,
+   "title": "Golden River",
+   "artist": "The Pulse Orchestra",
+   "genre": "funk/soul",
+   "subgenre": "funk",
+   "year": 2025,
+   "bpm": 115,
+   "key": "A minor",
+   "moods": [
+    "festif",
+    "sensuel"
+   ],
+   "themes": [
+    "liberté",
+    "soirée"
+   ],
+   "tags": [
+    "slap",
+    "wah-wah"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.18,
+    "swing": 0.12,
+    "bright": 0.53,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 123,
+   "title": "Douce Skyline",
+   "artist": "Tom Kane",
+   "genre": "funk/soul",
+   "subgenre": "funk",
+   "year": 2015,
+   "bpm": 108,
+   "key": "D minor",
+   "moods": [
+    "sensuel",
+    "groovy"
+   ],
+   "themes": [
+    "soirée",
+    "danse"
+   ],
+   "tags": [
+    "slap",
+    "wah-wah"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.15,
+    "swing": 0.12,
+    "bright": 0.59,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 124,
+   "title": "Rouge Skyline",
+   "artist": "The Pulse Orchestra",
+   "genre": "funk/soul",
+   "subgenre": "funk",
+   "year": 1969,
+   "bpm": 102,
+   "key": "G minor",
+   "moods": [
+    "sensuel",
+    "festif"
+   ],
+   "themes": [
+    "soirée",
+    "danse"
+   ],
+   "tags": [
+    "slap",
+    "wah-wah"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.11,
+    "swing": 0.12,
+    "bright": 0.59,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 125,
+   "title": "Frozen Pulse",
+   "artist": "Tom Kane",
+   "genre": "funk/soul",
+   "subgenre": "funk",
+   "year": 1974,
+   "bpm": 101,
+   "key": "A minor",
+   "moods": [
+    "festif",
+    "groovy"
+   ],
+   "themes": [
+    "soirée",
+    "danse"
+   ],
+   "tags": [
+    "slap",
+    "wah-wah"
+   ],
+   "synth": {
+    "drums": "breakbeat",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.13,
+    "swing": 0.12,
+    "bright": 0.63,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 126,
+   "title": "Hidden Storm",
+   "artist": "Malik Duval",
+   "genre": "funk/soul",
+   "subgenre": "disco",
+   "year": 2023,
+   "bpm": 118,
+   "key": "G minor",
+   "moods": [
+    "euphorique",
+    "dansant"
+   ],
+   "themes": [
+    "nuit",
+    "boule à facettes"
+   ],
+   "tags": [
+    "cordes",
+    "four-on-the-floor"
+   ],
+   "synth": {
+    "drums": "disco",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "pluck",
+    "drive": 0.01,
+    "swing": 0.0,
+    "bright": 0.7,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 127,
+   "title": "Last Skyline",
+   "artist": "The Tide Sound System",
+   "genre": "funk/soul",
+   "subgenre": "disco",
+   "year": 1981,
+   "bpm": 125,
+   "key": "C# minor",
+   "moods": [
+    "dansant",
+    "festif"
+   ],
+   "themes": [
+    "nuit",
+    "boule à facettes"
+   ],
+   "tags": [
+    "cordes",
+    "four-on-the-floor"
+   ],
+   "synth": {
+    "drums": "disco",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "pluck",
+    "drive": 0.01,
+    "swing": 0.0,
+    "bright": 0.67,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 128,
+   "title": "Grande Avenue",
+   "artist": "Malik Duval",
+   "genre": "funk/soul",
+   "subgenre": "disco",
+   "year": 1973,
+   "bpm": 123,
+   "key": "F major",
+   "moods": [
+    "dansant",
+    "festif"
+   ],
+   "themes": [
+    "nuit",
+    "fête"
+   ],
+   "tags": [
+    "cordes",
+    "four-on-the-floor"
+   ],
+   "synth": {
+    "drums": "disco",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "pluck",
+    "drive": 0.02,
+    "swing": 0.0,
+    "bright": 0.66,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 129,
+   "title": "Dernière Valse",
+   "artist": "The Tide Sound System",
+   "genre": "funk/soul",
+   "subgenre": "disco",
+   "year": 2023,
+   "bpm": 122,
+   "key": "D minor",
+   "moods": [
+    "festif",
+    "euphorique"
+   ],
+   "themes": [
+    "fête",
+    "nuit"
+   ],
+   "tags": [
+    "cordes",
+    "four-on-the-floor"
+   ],
+   "synth": {
+    "drums": "disco",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "pluck",
+    "drive": 0.03,
+    "swing": 0.0,
+    "bright": 0.73,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 130,
+   "title": "Wild Ville",
+   "artist": "Malik Duval",
+   "genre": "funk/soul",
+   "subgenre": "disco",
+   "year": 1996,
+   "bpm": 117,
+   "key": "F major",
+   "moods": [
+    "festif",
+    "dansant"
+   ],
+   "themes": [
+    "boule à facettes",
+    "fête"
+   ],
+   "tags": [
+    "cordes",
+    "four-on-the-floor"
+   ],
+   "synth": {
+    "drums": "disco",
+    "lead": "saw",
+    "pad": "saw",
+    "bass": "pluck",
+    "drive": 0.05,
+    "swing": 0.0,
+    "bright": 0.66,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 131,
+   "title": "Broken Memory",
+   "artist": "Jules Kane",
+   "genre": "funk/soul",
+   "subgenre": "neo soul",
+   "year": 1989,
+   "bpm": 82,
+   "key": "A# minor",
+   "moods": [
+    "sensuel",
+    "intime"
+   ],
+   "themes": [
+    "introspection",
+    "amour"
+   ],
+   "tags": [
+    "rhodes",
+    "voix"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.03,
+    "swing": 0.18,
+    "bright": 0.32,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 132,
+   "title": "Paper Shadow",
+   "artist": "The Pulse Ensemble",
+   "genre": "funk/soul",
+   "subgenre": "neo soul",
+   "year": 2004,
+   "bpm": 87,
+   "key": "C minor",
+   "moods": [
+    "intime",
+    "chaleureux"
+   ],
+   "themes": [
+    "amour",
+    "introspection"
+   ],
+   "tags": [
+    "rhodes",
+    "voix"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0.02,
+    "swing": 0.18,
+    "bright": 0.33,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 133,
+   "title": "Grande Desert",
+   "artist": "Jules Kane",
+   "genre": "funk/soul",
+   "subgenre": "neo soul",
+   "year": 1993,
+   "bpm": 92,
+   "key": "G minor",
+   "moods": [
+    "chaleureux",
+    "intime"
+   ],
+   "themes": [
+    "introspection",
+    "nuit"
+   ],
+   "tags": [
+    "rhodes",
+    "voix"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.18,
+    "bright": 0.43,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 134,
+   "title": "Crystal Tide",
+   "artist": "The Pulse Ensemble",
+   "genre": "funk/soul",
+   "subgenre": "neo soul",
+   "year": 2006,
+   "bpm": 93,
+   "key": "D# minor",
+   "moods": [
+    "chaleureux",
+    "sensuel"
+   ],
+   "themes": [
+    "introspection",
+    "amour"
+   ],
+   "tags": [
+    "rhodes",
+    "voix"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.18,
+    "bright": 0.41,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 135,
+   "title": "Distant Signal",
+   "artist": "Jules Kane",
+   "genre": "funk/soul",
+   "subgenre": "neo soul",
+   "year": 2018,
+   "bpm": 91,
+   "key": "C# minor",
+   "moods": [
+    "sensuel",
+    "intime"
+   ],
+   "themes": [
+    "nuit",
+    "introspection"
+   ],
+   "tags": [
+    "rhodes",
+    "voix"
+   ],
+   "synth": {
+    "drums": "boombap",
+    "lead": "organ",
+    "pad": "sine",
+    "bass": "sub",
+    "drive": 0,
+    "swing": 0.18,
+    "bright": 0.4,
+    "density": 1,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 136,
+   "title": "Paper Horizon",
+   "artist": "Léa Laurent",
+   "genre": "musiques du monde",
+   "subgenre": "afrobeat",
+   "year": 2005,
+   "bpm": 103,
+   "key": "D# major",
+   "moods": [
+    "engagé",
+    "solaire"
+   ],
+   "themes": [
+    "Lagos",
+    "politique"
+   ],
+   "tags": [
+    "percussions",
+    "cuivres"
+   ],
+   "synth": {
+    "drums": "afro",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.06,
+    "swing": 0.05,
+    "bright": 0.58,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 137,
+   "title": "Rouge Signal",
+   "artist": "The Tide Machine",
+   "genre": "musiques du monde",
+   "subgenre": "afrobeat",
+   "year": 2015,
+   "bpm": 114,
+   "key": "E minor",
+   "moods": [
+    "engagé",
+    "festif"
+   ],
+   "themes": [
+    "Lagos",
+    "politique"
+   ],
+   "tags": [
+    "percussions",
+    "cuivres"
+   ],
+   "synth": {
+    "drums": "afro",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.1,
+    "swing": 0.05,
+    "bright": 0.68,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 138,
+   "title": "Dernière Memory",
+   "artist": "Léa Laurent",
+   "genre": "musiques du monde",
+   "subgenre": "afrobeat",
+   "year": 2018,
+   "bpm": 113,
+   "key": "D# major",
+   "moods": [
+    "festif",
+    "solaire"
+   ],
+   "themes": [
+    "Lagos",
+    "danse"
+   ],
+   "tags": [
+    "percussions",
+    "cuivres"
+   ],
+   "synth": {
+    "drums": "afro",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.1,
+    "swing": 0.05,
+    "bright": 0.67,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 139,
+   "title": "Eternal Shadow",
+   "artist": "The Tide Machine",
+   "genre": "musiques du monde",
+   "subgenre": "afrobeat",
+   "year": 1989,
+   "bpm": 103,
+   "key": "C minor",
+   "moods": [
+    "solaire",
+    "festif"
+   ],
+   "themes": [
+    "politique",
+    "Lagos"
+   ],
+   "tags": [
+    "percussions",
+    "cuivres"
+   ],
+   "synth": {
+    "drums": "afro",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.11,
+    "swing": 0.05,
+    "bright": 0.55,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 140,
+   "title": "Paper Desert",
+   "artist": "Léa Laurent",
+   "genre": "musiques du monde",
+   "subgenre": "afrobeat",
+   "year": 2011,
+   "bpm": 105,
+   "key": "E minor",
+   "moods": [
+    "engagé",
+    "festif"
+   ],
+   "themes": [
+    "politique",
+    "danse"
+   ],
+   "tags": [
+    "percussions",
+    "cuivres"
+   ],
+   "synth": {
+    "drums": "afro",
+    "lead": "square",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.11,
+    "swing": 0.05,
+    "bright": 0.59,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 141,
+   "title": "Dernière Horizon",
+   "artist": "Maya Moreau",
+   "genre": "musiques du monde",
+   "subgenre": "flamenco",
+   "year": 2007,
+   "bpm": 114,
+   "key": "A# minor",
+   "moods": [
+    "dramatique",
+    "passionné"
+   ],
+   "themes": [
+    "fête",
+    "Andalousie"
+   ],
+   "tags": [
+    "guitare",
+    "palmas"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.63,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 142,
+   "title": "Rouge Nuit",
+   "artist": "The Avenue Brothers",
+   "genre": "musiques du monde",
+   "subgenre": "flamenco",
+   "year": 1996,
+   "bpm": 139,
+   "key": "D minor",
+   "moods": [
+    "intense",
+    "dramatique"
+   ],
+   "themes": [
+    "fête",
+    "Andalousie"
+   ],
+   "tags": [
+    "guitare",
+    "palmas"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.0,
+    "swing": 0.0,
+    "bright": 0.56,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 143,
+   "title": "Silent Skyline",
+   "artist": "Maya Moreau",
+   "genre": "musiques du monde",
+   "subgenre": "flamenco",
+   "year": 1997,
+   "bpm": 112,
+   "key": "C# minor",
+   "moods": [
+    "passionné",
+    "intense"
+   ],
+   "themes": [
+    "duende",
+    "fête"
+   ],
+   "tags": [
+    "guitare",
+    "palmas"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.04,
+    "swing": 0.0,
+    "bright": 0.69,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 144,
+   "title": "Douce Mirror",
+   "artist": "The Avenue Brothers",
+   "genre": "musiques du monde",
+   "subgenre": "flamenco",
+   "year": 2003,
+   "bpm": 132,
+   "key": "G# minor",
+   "moods": [
+    "passionné",
+    "dramatique"
+   ],
+   "themes": [
+    "duende",
+    "Andalousie"
+   ],
+   "tags": [
+    "guitare",
+    "palmas"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.0,
+    "bright": 0.64,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 145,
+   "title": "Last Heart",
+   "artist": "Maya Moreau",
+   "genre": "musiques du monde",
+   "subgenre": "flamenco",
+   "year": 1996,
+   "bpm": 141,
+   "key": "F# minor",
+   "moods": [
+    "intense",
+    "dramatique"
+   ],
+   "themes": [
+    "duende",
+    "fête"
+   ],
+   "tags": [
+    "guitare",
+    "palmas"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.02,
+    "swing": 0.0,
+    "bright": 0.73,
+    "density": 4,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 146,
+   "title": "Wild Valse",
+   "artist": "Maya Laurent",
+   "genre": "folk",
+   "subgenre": "folk acoustique",
+   "year": 2003,
+   "bpm": 103,
+   "key": "G# major",
+   "moods": [
+    "intime",
+    "nostalgique"
+   ],
+   "themes": [
+    "campagne",
+    "voyage"
+   ],
+   "tags": [
+    "guitare acoustique",
+    "harmonica"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.05,
+    "bright": 0.41,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 147,
+   "title": "Hidden Memory",
+   "artist": "The Echo Machine",
+   "genre": "folk",
+   "subgenre": "folk acoustique",
+   "year": 2012,
+   "bpm": 101,
+   "key": "G major",
+   "moods": [
+    "nostalgique",
+    "chaleureux"
+   ],
+   "themes": [
+    "campagne",
+    "voyage"
+   ],
+   "tags": [
+    "guitare acoustique",
+    "harmonica"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.04,
+    "swing": 0.05,
+    "bright": 0.36,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 148,
+   "title": "Neon Signal",
+   "artist": "Maya Laurent",
+   "genre": "folk",
+   "subgenre": "folk acoustique",
+   "year": 2023,
+   "bpm": 112,
+   "key": "G# major",
+   "moods": [
+    "chaleureux",
+    "nostalgique"
+   ],
+   "themes": [
+    "campagne",
+    "famille"
+   ],
+   "tags": [
+    "guitare acoustique",
+    "harmonica"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.02,
+    "swing": 0.05,
+    "bright": 0.51,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 149,
+   "title": "Eternal Signal",
+   "artist": "The Echo Machine",
+   "genre": "folk",
+   "subgenre": "folk acoustique",
+   "year": 2013,
+   "bpm": 107,
+   "key": "F major",
+   "moods": [
+    "intime",
+    "nostalgique"
+   ],
+   "themes": [
+    "campagne",
+    "famille"
+   ],
+   "tags": [
+    "guitare acoustique",
+    "harmonica"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0.01,
+    "swing": 0.05,
+    "bright": 0.43,
+    "density": 2,
+    "noise": 0.0
+   }
+  },
+  {
+   "id": 150,
+   "title": "Velvet Horizon",
+   "artist": "Maya Laurent",
+   "genre": "folk",
+   "subgenre": "folk acoustique",
+   "year": 1996,
+   "bpm": 115,
+   "key": "F# major",
+   "moods": [
+    "nostalgique",
+    "intime"
+   ],
+   "themes": [
+    "famille",
+    "campagne"
+   ],
+   "tags": [
+    "guitare acoustique",
+    "harmonica"
+   ],
+   "synth": {
+    "drums": "none",
+    "lead": "pluck",
+    "pad": "none",
+    "bass": "pluck",
+    "drive": 0,
+    "swing": 0.05,
+    "bright": 0.41,
+    "density": 2,
+    "noise": 0.0
+   }
+  }
+ ]
+}

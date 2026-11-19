@@ -1,0 +1,48 @@
+name: Container image
+
+# Called by create-release.yml: one native build per architecture, then one multi-arch tag.
+on:
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - { os: ubuntu-latest, platform: linux/amd64, arch: amd64 }
+          - { os: ubuntu-24.04-arm, platform: linux/arm64, arch: arm64 }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with: { registry: ghcr.io, username: "${{ github.actor }}", password: "${{ secrets.GITHUB_TOKEN }}" }
+      - id: name
+        run: echo "image=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+      - uses: docker/build-push-action@v6
+        with:
+          platforms: ${{ matrix.platform }}
+          push: true
+          tags: ${{ steps.name.outputs.image }}:${{ inputs.tag }}-${{ matrix.arch }}
+
+  manifest:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with: { registry: ghcr.io, username: "${{ github.actor }}", password: "${{ secrets.GITHUB_TOKEN }}" }
+      - run: |
+          img=ghcr.io/${GITHUB_REPOSITORY,,}
+          docker buildx imagetools create -t $img:${{ inputs.tag }} -t $img:latest \
+            $img:${{ inputs.tag }}-amd64 $img:${{ inputs.tag }}-arm64

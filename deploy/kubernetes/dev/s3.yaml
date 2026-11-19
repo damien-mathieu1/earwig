@@ -1,0 +1,30 @@
+# Throwaway S3 (RustFS) for local tests; data is lost with the pod.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: s3 } }
+  template:
+    metadata: { labels: { app: s3 } }
+    spec:
+      containers:
+        - name: rustfs
+          image: rustfs/rustfs:1.0.6
+          env:
+            - { name: RUSTFS_ACCESS_KEY, valueFrom: { secretKeyRef: { name: earwig-s3, key: AWS_ACCESS_KEY_ID } } }
+            - { name: RUSTFS_SECRET_KEY, valueFrom: { secretKeyRef: { name: earwig-s3, key: AWS_SECRET_ACCESS_KEY } } }
+          ports: [{ containerPort: 9000 }]
+          volumeMounts: [{ name: data, mountPath: /data }]
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: s3
+spec:
+  selector: { app: s3 }
+  ports: [{ port: 9000, targetPort: 9000 }]
