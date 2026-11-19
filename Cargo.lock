@@ -871,7 +871,7 @@ checksum = "92773504d58c093f6de2459af4af33faa518c13451eb8f2b5698ed3d36e7c813"
 
 [[package]]
 name = "earwig"
-version = "0.1.0"
+version = "2026.11.1"
 dependencies = [
  "anyhow",
  "arc-swap",
@@ -896,7 +896,7 @@ dependencies = [
 
 [[package]]
 name = "earwig-analysis"
-version = "0.1.0"
+version = "2026.11.1"
 dependencies = [
  "anyhow",
  "earwig-core",
@@ -915,7 +915,7 @@ dependencies = [
 
 [[package]]
 name = "earwig-core"
-version = "0.1.0"
+version = "2026.11.1"
 dependencies = [
  "anyhow",
  "bincode",
